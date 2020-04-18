@@ -9,7 +9,9 @@ public class ReplayRecroderTest : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.D) && _isRecording) {
-            _player.playReplay(_recorder.stopRecording());
+            StartCoroutine(_recorder.stopRecording((GameReplay.Replay inReplay)=> {
+                _player.playReplay(inReplay);
+            }));
             _isRecording = false;
         }
     }
