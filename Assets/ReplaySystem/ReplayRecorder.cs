@@ -15,18 +15,21 @@ namespace GameReplay
             _recordingState = new RecordingState(replayRecordingCamera, pathToSaveCurrentCapture, _frameRate, _preset);
         }
 
-        public Replay stopRecording() {
+        public System.Collections.IEnumerator stopRecording(System.Action<Replay> resultCallback) {
             if (!isRecording)
                 throw (new System.Exception("Stop recording on recording is not performed"));
 
-            Replay newReplay = new Replay(pathToSaveCurrentCapture);
+            context = this;
+            yield return _recordingState.closeRecordingSession();
 
-            _recordingState.closeRecordingSession();
+            Replay newReplay = new Replay(pathToSaveCurrentCapture);
             _recordingState = null;
             ++_currentCaptureIndex;
 
-            return newReplay;
+            resultCallback(newReplay);
         }
+
+        static MonoBehaviour context;
 
         private class RecordingState {
             public RecordingState(Camera inCamera, string inPathToSaveResult, float inFrameRate, FFmpegPreset inPreset) {
@@ -51,8 +54,8 @@ namespace GameReplay
                 _camera = inCamera;
             }
 
-            public void closeRecordingSession() {
-                session.Close();
+            public System.Collections.IEnumerator closeRecordingSession() {
+                yield return session.AsyncClose();
                 session.Dispose();
                 _camera.targetTexture = null;
                 Destroy(tempRT);

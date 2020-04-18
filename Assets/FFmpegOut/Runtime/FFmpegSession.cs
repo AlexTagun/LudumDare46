@@ -84,6 +84,32 @@ namespace FFmpegOut
             }
         }
 
+        public System.Collections.IEnumerator AsyncClose()
+        {
+            if (_pipe != null)
+            {
+                string error = null;
+                yield return _pipe.AsyncCloseAndGetOutput((string inError) => error = inError);
+
+                if (!string.IsNullOrEmpty(error))
+                    Debug.LogWarning(
+                        "FFmpeg returned with warning/error messages. " +
+                        "See the following lines for details:\n" + error
+                    );
+
+                _pipe.Dispose();
+                _pipe = null;
+            }
+
+            if (_blitMaterial != null)
+            {
+                UnityEngine.Object.Destroy(_blitMaterial);
+                _blitMaterial = null;
+            }
+        }
+
+
+
         public void Dispose()
         {
             Close();

@@ -90,6 +90,40 @@ namespace FFmpegOut
             return error;
         }
 
+        public System.Collections.IEnumerator AsyncCloseAndGetOutput(System.Action<string> errorCallback)
+        {
+            // Terminate the subthreads.
+            _terminate = true;
+
+            _copyPing.Set();
+            _pipePing.Set();
+
+            while (!_copyThread.Join(10)) yield return null;
+            while (!_pipeThread.Join(10)) yield return null;
+
+            // Close FFmpeg subprocess.
+            _subprocess.StandardInput.Close();
+            while (!_subprocess.WaitForExit(10))  yield return null;
+
+            var outputReader = _subprocess.StandardError;
+            var error = outputReader.ReadToEnd();
+
+            _subprocess.Close();
+            _subprocess.Dispose();
+
+            outputReader.Close();
+            outputReader.Dispose();
+
+            // Nullify members (just for ease of debugging).
+            _subprocess = null;
+            _copyThread = null;
+            _pipeThread = null;
+            _copyQueue = null;
+            _pipeQueue = _freeBuffer = null;
+
+            errorCallback(error);
+        }
+
         #endregion
 
         #region IDisposable implementation
