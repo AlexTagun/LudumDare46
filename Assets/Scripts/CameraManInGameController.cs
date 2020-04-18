@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManInGameController : MonoBehaviour
+public class CameramanInGameController : MonoBehaviour
 {
-    [SerializeField] private CameraManMovement _cameramanMovement;
+    [SerializeField] private CameramanMovement _cameramanMovement;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -39,5 +39,7 @@ public class CameraManInGameController : MonoBehaviour
         {
             _cameramanMovement.MoveRight();
         }
+
+        _cameramanMovement.Rotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
     }
 }
