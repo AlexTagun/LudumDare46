@@ -5,17 +5,13 @@ using UnityEngine;
 public class CameramanInGameController : MonoBehaviour
 {
     [SerializeField] private CameramanMovement _cameramanMovement;
+    [SerializeField] private GameObject _cameraEffectUI;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool shootOnCamera = false;
+
+    private void Awake()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        _cameraEffectUI.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -39,7 +35,20 @@ public class CameramanInGameController : MonoBehaviour
         {
             _cameramanMovement.MoveRight();
         }
-
+        // движение камеры и поворот player
         _cameramanMovement.Rotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (shootOnCamera)
+            {
+                shootOnCamera = false;
+            }
+            else
+            {
+                shootOnCamera = true;
+            }
+            _cameraEffectUI.SetActive(!_cameraEffectUI.activeSelf);
+        }
     }
 }
