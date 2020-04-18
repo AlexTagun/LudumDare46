@@ -9,7 +9,7 @@ public class CameramanInGameController : MonoBehaviour {
     private bool shootOnCamera = false;
 
     private void Awake() {
-        _cameraEffectUI.SetActive(false);
+        //_cameraEffectUI.SetActive(false); TODO: uncomment
     }
 
     private void Update() {
