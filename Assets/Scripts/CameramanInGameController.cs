@@ -2,50 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameramanInGameController : MonoBehaviour
-{
+public class CameramanInGameController : MonoBehaviour {
     [SerializeField] private CameramanMovement _cameramanMovement;
     [SerializeField] private GameObject _cameraEffectUI;
 
     private bool shootOnCamera = false;
 
-    private void Awake()
-    {
+    private void Awake() {
         _cameraEffectUI.SetActive(false);
     }
 
-    private void FixedUpdate()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            _cameramanMovement.MoveForward();
-        }
+    private void Update() {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            _cameramanMovement.MoveLeft();
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            _cameramanMovement.MoveBack();
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            _cameramanMovement.MoveRight();
-        }
+        Vector3 velocity = transform.right * x + transform.forward * z;
+        velocity.y = -9.8f * Time.deltaTime;
+        
+        _cameramanMovement.Move(velocity);
+            
         // движение камеры и поворот player
         _cameramanMovement.Rotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (shootOnCamera)
-            {
+        if (Input.GetMouseButtonDown(1)) {
+            if (shootOnCamera) {
                 shootOnCamera = false;
-            }
-            else
-            {
+            } else {
                 shootOnCamera = true;
             }
             _cameraEffectUI.SetActive(!_cameraEffectUI.activeSelf);

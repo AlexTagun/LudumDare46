@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameramanMovement : MonoBehaviour
-{
+public class CameramanMovement : MonoBehaviour {
     [SerializeField] private Camera _camera;
     [SerializeField] private float _speed;
     [SerializeField] private float _speedRotation;
+    [SerializeField] private CharacterController _characterController;
 
     private float verticalSpeed;
+
     private float horizontalSpeed;
+
     // вращение камеры
     private float mouseDeltaX;
     private float mouseDeltaY;
@@ -17,46 +19,11 @@ public class CameramanMovement : MonoBehaviour
     private Quaternion verticalRotation;
     private Quaternion horizontalRotarion;
 
-    private void Awake()
-    {
+    private void Awake() {
         startRotation = transform.rotation;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void MoveForward()
-    {
-        verticalSpeed = _speed * Time.deltaTime;
-        horizontalSpeed = 0f;
-        Move();
-    }
-
-    public void MoveBack()
-    {
-        verticalSpeed = (-1) * _speed * Time.deltaTime;
-        horizontalSpeed = 0f;
-        Move();
-    }
-    public void MoveLeft()
-    {
-        horizontalSpeed = (-1) * _speed * Time.deltaTime;
-        verticalSpeed = 0f;
-        Move();
-    }
-
-    public void MoveRight()
-    {
-        horizontalSpeed = _speed * Time.deltaTime;
-        verticalSpeed = 0f;
-        Move();
-    }
-
-    public void Rotate(float mouseDeltaX, float mouseDeltaY)
-    {
+    public void Rotate(float mouseDeltaX, float mouseDeltaY) {
         this.mouseDeltaX += mouseDeltaX * _speedRotation;
         this.mouseDeltaY += mouseDeltaY * _speedRotation;
         this.mouseDeltaY = Mathf.Clamp(this.mouseDeltaY, -60, 60);
@@ -64,12 +31,11 @@ public class CameramanMovement : MonoBehaviour
         verticalRotation = Quaternion.AngleAxis(this.mouseDeltaX, Vector3.up);
         horizontalRotarion = Quaternion.AngleAxis(-this.mouseDeltaY, Vector3.right);
         _camera.transform.rotation = startRotation * verticalRotation * horizontalRotarion;
-
     }
 
-
-    private void Move()
-    {
-        transform.Translate(new Vector3(horizontalSpeed, 0, verticalSpeed));
+    public void Move(Vector3 vel) {
+        vel.x *= _speed * Time.deltaTime;
+        vel.z *= _speed * Time.deltaTime;
+        _characterController.Move(vel);
     }
 }
