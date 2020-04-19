@@ -6,12 +6,10 @@ public class CameramanMovement : MonoBehaviour {
     [SerializeField] private Camera _camera;
     [SerializeField] private float _speed;
     [SerializeField] private float _speedRotation;
+    [SerializeField] private float _jumpSpeed;
     [SerializeField] private CharacterController _characterController;
 
-    private float verticalSpeed;
-
-    private float horizontalSpeed;
-
+    public float JumpSpeed => _jumpSpeed;
     // вращение камеры
     private float mouseDeltaX;
     private float mouseDeltaY;
@@ -38,4 +36,6 @@ public class CameramanMovement : MonoBehaviour {
         vel.z *= _speed * Time.deltaTime;
         _characterController.Move(vel);
     }
+
+
 }
