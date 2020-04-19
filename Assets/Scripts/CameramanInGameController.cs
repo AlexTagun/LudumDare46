@@ -46,12 +46,15 @@ public class CameramanInGameController : MonoBehaviour {
             if (!_replayRecorder.isRecording) {
                 _replayRecorder.startRecording();
                 _cameraEffectUI.SetActive(true);
+                _cameramanMovement.LookAtCamera();
             }  else {
                 isPossibleToChangeCameraState = false;
+                
                 StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
                     _replays.Add(inReplay);
 
                     _cameraEffectUI.SetActive(false);
+                    _cameramanMovement.DontLookAtCamera();
                     isPossibleToChangeCameraState = true;
                 }));
             }
