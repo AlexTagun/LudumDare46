@@ -6,10 +6,12 @@ using DG.Tweening;
 public class RocketLaunchEvent : GlobalEvent {
 
     [SerializeField] private float _duraction;
-    [SerializeField] private float _endPosition;
+    [SerializeField] private float _endPositionY;
+    [SerializeField] private float _speedRotation;
 
     protected override void Execute() {
         Debug.Log("Rocket Launched");
-        transform.DOMoveY(_endPosition, _duraction).OnComplete(() => { Destroy(gameObject); });
+        transform.DORotate(Vector3.up * _speedRotation, _duraction);
+        transform.DOMoveY(_endPositionY, _duraction).OnComplete(() => { Destroy(gameObject); });
     }
 }
