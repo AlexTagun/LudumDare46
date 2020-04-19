@@ -7,9 +7,11 @@ public class CameramanMovement : MonoBehaviour {
     [SerializeField] private float _speed;
     [SerializeField] private float _speedRotation;
     [SerializeField] private float _jumpSpeed;
+    [SerializeField] private int _jumpFrameTime;
     [SerializeField] private CharacterController _characterController;
 
     public float JumpSpeed => _jumpSpeed;
+    public int JumpFrameTime => _jumpFrameTime;
     // вращение камеры
     private float mouseDeltaX;
     private float mouseDeltaY;

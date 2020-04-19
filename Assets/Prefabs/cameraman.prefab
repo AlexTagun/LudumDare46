@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameramanMovement: {fileID: 2602980868393172019}
+  _characterController: {fileID: 319074511559661802}
   _cameraEffectUI: {fileID: 0}
 --- !u!114 &2602980868393172019
 MonoBehaviour:
@@ -112,6 +113,8 @@ MonoBehaviour:
   _camera: {fileID: 2602980868423871215}
   _speed: 12
   _speedRotation: 5
+  _jumpSpeed: 0.12
+  _jumpFrameTime: 5
   _characterController: {fileID: 319074511559661802}
 --- !u!143 &319074511559661802
 CharacterController:

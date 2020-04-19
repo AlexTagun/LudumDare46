@@ -28,16 +28,15 @@ public class CameramanInGameController : MonoBehaviour {
 
         if (_characterController.isGrounded)
         {
-            velocity.y = -9.8f * Time.deltaTime;
+            // velocity.y = 0;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                velocity.y = _cameramanMovement.JumpSpeed * Time.deltaTime;
+                // velocity.y = _cameramanMovement.JumpSpeed * Time.deltaTime;
+                // velocity.y += Mathf.Sqrt(_cameramanMovement.JumpSpeed * -2f * -9.8f);
+                StartCoroutine(Jump());
             };
         }
-        else
-        {
-            velocity.y -= 9.8f * Time.deltaTime;
-        };
+        velocity.y -= 9.8f * Time.deltaTime;
         _cameramanMovement.Move(velocity);
 
         if (Input.GetMouseButtonDown(1))
@@ -51,6 +50,17 @@ public class CameramanInGameController : MonoBehaviour {
                 shootOnCamera = true;
             }
             _cameraEffectUI.SetActive(!_cameraEffectUI.activeSelf);
+        }
+    }
+
+    private IEnumerator Jump() {
+        var k = 0.01f;
+        for (int i = 0; i < _cameramanMovement.JumpFrameTime; i++) {
+            Vector3 velocity = Vector3.zero;
+            velocity.y += Mathf.Sqrt((_cameramanMovement.JumpSpeed - k) * -2f * -9.8f);
+            k += k;
+            _cameramanMovement.Move(velocity);
+            yield return null;
         }
     }
 
