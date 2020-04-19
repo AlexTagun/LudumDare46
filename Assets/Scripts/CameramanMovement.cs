@@ -1,7 +1,9 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameramanMovement : MonoBehaviour {
     [SerializeField] private Camera _camera;
@@ -13,6 +15,8 @@ public class CameramanMovement : MonoBehaviour {
     [SerializeField] private Transform _cameraStartPos;
     [SerializeField] private Transform _cameraEndPos;
     [SerializeField] private Transform _cameraTransform;
+    [SerializeField] private Image _uiBlack;
+    [SerializeField] private GameObject _cameraEffectUI;
 
     [Header("Shake Camera")]
     [SerializeField] private float _duractionShake;
@@ -55,13 +59,29 @@ public class CameramanMovement : MonoBehaviour {
         _camera.transform.DOShakePosition(_duractionShake);
     }
 
-    public void LookAtCamera() {
+    public IEnumerator LookAtCamera(Action callback = null) {
         _cameraTransform.DOLocalMove(_cameraEndPos.localPosition, 0.5f);
         _cameraTransform.DOScale(_cameraEndPos.localScale, 0.5f);
+        _uiBlack.DOFade(1, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        
+        _cameraEffectUI.SetActive(true);
+        _cameraTransform.gameObject.SetActive(false);
+        _uiBlack.DOFade(0, 0.2f);
+        callback?.Invoke();
     }
     
-    public void DontLookAtCamera() {
+    public IEnumerator DontLookAtCamera(Action callback = null) {
+        _uiBlack.DOFade(1, 0.2f);
+        
+        yield return new WaitForSeconds(0.1f);
+        _cameraTransform.gameObject.SetActive(true);
+        
+        _cameraEffectUI.SetActive(false);
+        _uiBlack.DOFade(0, 0.5f);
         _cameraTransform.DOLocalMove(_cameraStartPos.localPosition, 0.5f);
         _cameraTransform.DOScale(_cameraStartPos.localScale, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        callback?.Invoke();
     }
 }

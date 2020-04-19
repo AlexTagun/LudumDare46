@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameramanInGameController : MonoBehaviour {
     [SerializeField] private CameramanMovement _cameramanMovement;
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private GameObject _cameraEffectUI;
     [SerializeField] private GameReplay.ReplayRecorder _replayRecorder;
 
     //TEMPORARY PUBLIC FOR TESTS. CHANGE PUBLIC TO PRIVATE IF YOU SEE IT AND REMOVE TEST
@@ -13,7 +12,7 @@ public class CameramanInGameController : MonoBehaviour {
 
     private void Awake()
     {
-        _cameraEffectUI.SetActive(false);
+        // _cameraEffectUI.SetActive(false);
         EventManager.OnCameraShake += _cameramanMovement.ShakeCamera;
     }
 
@@ -44,19 +43,18 @@ public class CameramanInGameController : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1) && isPossibleToChangeCameraState) {
             if (!_replayRecorder.isRecording) {
-                _replayRecorder.startRecording();
-                _cameraEffectUI.SetActive(true);
-                _cameramanMovement.LookAtCamera();
+                
+                StartCoroutine(_cameramanMovement.LookAtCamera((() => _replayRecorder.startRecording())));
+
             }  else {
                 isPossibleToChangeCameraState = false;
+                StartCoroutine(_cameramanMovement.DontLookAtCamera((() => {
+                    StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
+                        _replays.Add(inReplay);
+                        isPossibleToChangeCameraState = true;
+                    }));
+                })));
                 
-                StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
-                    _replays.Add(inReplay);
-
-                    _cameraEffectUI.SetActive(false);
-                    _cameramanMovement.DontLookAtCamera();
-                    isPossibleToChangeCameraState = true;
-                }));
             }
         }
     }
