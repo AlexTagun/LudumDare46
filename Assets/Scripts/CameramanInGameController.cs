@@ -6,6 +6,7 @@ public class CameramanInGameController : MonoBehaviour {
     [SerializeField] private CameramanMovement _cameramanMovement;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private GameReplay.ReplayRecorder _replayRecorder;
+    [SerializeField] private PopularityCollector _popularityCollector;
 
     //TEMPORARY PUBLIC FOR TESTS. CHANGE PUBLIC TO PRIVATE IF YOU SEE IT AND REMOVE TEST
     public List<GameReplay.Replay> _replays = new List<GameReplay.Replay>();
@@ -44,17 +45,20 @@ public class CameramanInGameController : MonoBehaviour {
         if (Input.GetMouseButtonDown(1) && isPossibleToChangeCameraState) {
             if (!_replayRecorder.isRecording) {
                 
-                StartCoroutine(_cameramanMovement.LookAtCamera((() => _replayRecorder.startRecording())));
+                StartCoroutine(_cameramanMovement.LookAtCamera(() => {
+                    _popularityCollector.setCollectingEnabled(true);
+                    _replayRecorder.startRecording();
+                }));
 
             }  else {
                 isPossibleToChangeCameraState = false;
-                StartCoroutine(_cameramanMovement.DontLookAtCamera((() => {
+                StartCoroutine(_cameramanMovement.DontLookAtCamera(() => {
                     StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
                         _replays.Add(inReplay);
                         isPossibleToChangeCameraState = true;
+                        _popularityCollector.setCollectingEnabled(false);
                     }));
-                })));
-                
+                }));
             }
         }
     }

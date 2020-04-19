@@ -5088,8 +5088,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tutorialUIPanel: {fileID: 1725528994}
-  _iconSpriteRenderer: {fileID: 0}
-  _textTutorial: {fileID: 0}
+  _iconImage: {fileID: 0}
+  _textPlaceUI: {fileID: 0}
 --- !u!4 &1350391072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2037493320446071516, guid: cad25860872a87d4289ac631e5da15de,
@@ -12653,7 +12653,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2870358923928568942, guid: a48389a3f3b1d2d48bf3151d61630f8c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a48389a3f3b1d2d48bf3151d61630f8c, type: 3}
 --- !u!1001 &7623015662697388590
 PrefabInstance:

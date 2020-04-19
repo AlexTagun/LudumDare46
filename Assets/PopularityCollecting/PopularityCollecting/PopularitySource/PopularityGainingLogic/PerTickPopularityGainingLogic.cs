@@ -25,8 +25,7 @@ public class PerTickPopularityGainingLogic : PopularityGainingLogic
     }
 
     private void notifyPopularityGained(int inPopularityGained) {
-        if (null != UI_onGainedPoints)
-            UI_onGainedPoints(inPopularityGained);
+        UI_onGainedPoints?.Invoke(inPopularityGained);
     }
 
     // Fields

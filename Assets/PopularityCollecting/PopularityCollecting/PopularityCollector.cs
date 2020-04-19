@@ -2,6 +2,10 @@
 
 public class PopularityCollector : MonoBehaviour
 {
+    public void setCollectingEnabled(bool inIsEnabled) {
+        _isCollectingEnabled = inIsEnabled;
+    }
+
     public PopularitySource[] collectedPopularitySources => _collectedPopularitySourcesArray;
     public int actualCollectedPopularitySourcesNum => _actualCollectedPopularitySourcesNum;
 
@@ -15,10 +19,14 @@ public class PopularityCollector : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        updateWorldFrusturmPlanesCorners();
-        updateRegisteredPopularitySources();
-        updateCollectedPopularitySources();
-        updatePopularityGaining();
+        if (_isCollectingEnabled) {
+            updateWorldFrusturmPlanesCorners();
+            updateRegisteredPopularitySources();
+            updateCollectedPopularitySources();
+            updatePopularityGaining();
+        } else {
+            updateIdle();
+        }
     }
 
     private void updateWorldFrusturmPlanesCorners() {
@@ -46,8 +54,7 @@ public class PopularityCollector : MonoBehaviour
 
         ArrayUtils.iterateArray(_registeredPopularitySourcesArray, _actualRegisteredPopularitySourcesNum,
             (PopularitySource theRegisteredPopularitySource) =>{
-                if (isPopularitySourceShouldBeCollected(theRegisteredPopularitySource))
-                {
+                if (isPopularitySourceShouldBeCollected(theRegisteredPopularitySource)) {
                     ArrayUtils.addToArrayAdopting(
                             ref _register_collectedPopularitySourcesArray, ref _refister_actualCollectedPopularitySourcesNum,
                             theRegisteredPopularitySource);
@@ -57,15 +64,20 @@ public class PopularityCollector : MonoBehaviour
         ArrayUtils.setFromArrayProcessingChanges(
             ref _collectedPopularitySourcesArray, ref _actualCollectedPopularitySourcesNum,
             _register_collectedPopularitySourcesArray, _refister_actualCollectedPopularitySourcesNum,
-            (PopularitySource inAddedPopularitySource)=>inAddedPopularitySource.startGaining(),
-            (PopularitySource inRemovedPopularitySource)=>inRemovedPopularitySource.stopGaining());
+            (PopularitySource inAddedPopularitySource)=>inAddedPopularitySource?.startGaining(),
+            (PopularitySource inRemovedPopularitySource)=>inRemovedPopularitySource?.stopGaining());
     }
 
     private void updatePopularityGaining() {
         ArrayUtils.iterateArray(_collectedPopularitySourcesArray, _actualCollectedPopularitySourcesNum,
             (PopularitySource inPopularitySource) =>{
-                inPopularitySource.tickPopularityGaining(Time.fixedDeltaTime);
+                inPopularitySource?.tickPopularityGaining(Time.fixedDeltaTime);
             });
+    }
+
+    private void updateIdle() {
+        ArrayUtils.clearArray(_collectedPopularitySourcesArray, ref _actualCollectedPopularitySourcesNum,
+                (PopularitySource inSource) => inSource.stopGaining());
     }
 
     private bool isPopularitySourceShouldBeCollected(PopularitySource inPopularitySource) {
@@ -118,6 +130,8 @@ public class PopularityCollector : MonoBehaviour
     [SerializeField] private float _farPlane = 1000f;
 
     [SerializeField] private bool _debug_drawGizmos = true;
+
+    private bool _isCollectingEnabled = false;
 
     private Vector3[] _XZFrustrumPlaneCorners = new Vector3[3];
     private Vector3[] _XYFrustrumPlaneCorners = new Vector3[3];
@@ -247,5 +261,15 @@ static class ArrayUtils
                 inAddingProcessing(theSetFromElement);
             }
         }
+    }
+
+    public static void clearArray<ElementType>(
+            ElementType[] inArray, ref int inoutActualSize,
+            System.Action<ElementType> inAction)
+    {
+        for (int theIndex = 0; theIndex < inoutActualSize; ++theIndex)
+            inAction(inArray[theIndex]);
+
+        inoutActualSize = 0;
     }
 }
