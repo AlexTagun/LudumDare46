@@ -38,4 +38,6 @@ public class PeopleMovement : MonoBehaviour
             _navMeshAgent.SetDestination(randomPosition);
         }
     }
+
+    
 }
