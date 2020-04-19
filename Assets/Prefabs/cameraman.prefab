@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 6218194257769546097}
   - component: {fileID: 319074511559661802}
   - component: {fileID: 8347991002941968115}
+  - component: {fileID: 4031076680281820967}
   m_Layer: 0
   m_Name: cameraman
   m_TagString: Player
@@ -357,6 +358,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialPopularityAmount: 0
+--- !u!114 &4031076680281820967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602980868393171982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2aa0fc320cc2f45b234a5a4f998706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingEnergyAmount: 100
 --- !u!1 &2602980868423871209
 GameObject:
   m_ObjectHideFlags: 0
