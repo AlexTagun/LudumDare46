@@ -116,6 +116,7 @@ MonoBehaviour:
   _jumpSpeed: 0.12
   _jumpFrameTime: 5
   _characterController: {fileID: 319074511559661802}
+  _duractionShake: 0
 --- !u!143 &319074511559661802
 CharacterController:
   m_ObjectHideFlags: 0
@@ -146,6 +147,7 @@ GameObject:
   - component: {fileID: 2602980868423871215}
   - component: {fileID: 2602980868423871214}
   - component: {fileID: 2602980868423871213}
+  - component: {fileID: 6230825132825403446}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -322,3 +324,20 @@ MonoBehaviour:
       data1: 0
       data2: 0
   defaultFrameSettings: 0
+--- !u!114 &6230825132825403446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602980868423871209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c515143a6f2d4d4ca78eed0a2e9fb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameraForCollecting: {fileID: 2602980868423871215}
+  _FOV: 60
+  _nearPlane: 0.3
+  _farPlane: 1000
+  _debug_drawGizmos: 1

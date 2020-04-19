@@ -11,7 +11,7 @@ public abstract class GlobalEvent : MonoBehaviour {
     }
 
     private void OnSecondTick(int second) {
-        Debug.Log(second);
+        //Debug.Log(second);
         if (second == _secondsToExecute) {
             Execute();
             EventManager.OnSecondTick -= OnSecondTick;
