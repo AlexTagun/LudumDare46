@@ -6,8 +6,10 @@ public class CameramanInGameController : MonoBehaviour {
     [SerializeField] private CameramanMovement _cameramanMovement;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private GameObject _cameraEffectUI;
+    [SerializeField] private GameReplay.ReplayRecorder _replayRecorder;
 
-    private bool shootOnCamera = false;
+    //TEMPORARY PUBLIC FOR TESTS. CHANGE PUBLIC TO PRIVATE IF YOU SEE IT AND REMOVE TEST
+    public List<GameReplay.Replay> _replays = new List<GameReplay.Replay>();
 
     private void Awake()
     {
@@ -40,20 +42,22 @@ public class CameramanInGameController : MonoBehaviour {
         velocity.y -= 9.8f * Time.deltaTime;
         _cameramanMovement.Move(velocity);
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (shootOnCamera)
-            {
-                shootOnCamera = false;
-            }
-            else
-            {
-                shootOnCamera = true;
-            }
-            _cameraEffectUI.SetActive(!_cameraEffectUI.activeSelf);
-        }
+        if (Input.GetMouseButtonDown(1) && isPossibleToChangeCameraState) {
+            if (!_replayRecorder.isRecording) {
+                _replayRecorder.startRecording();
+                _cameraEffectUI.SetActive(true);
+            }  else {
+                isPossibleToChangeCameraState = false;
+                StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
+                    _replays.Add(inReplay);
 
+                    _cameraEffectUI.SetActive(false);
+                    isPossibleToChangeCameraState = true;
+                }));
+            }
+        }
     }
+    private bool isPossibleToChangeCameraState = true;
 
     private IEnumerator Jump() {
         var k = 0.01f;

@@ -7,6 +7,9 @@ namespace GameReplay
     [AddComponentMenu("GameReplay/ReplayRecorder")]
     public sealed class ReplayRecorder : MonoBehaviour
     {
+        public bool isRecording => (null != _recordingState);
+        public bool isPossibleToStartRecording => !isRecording;
+
         public void startRecording() {
             if (isRecording)
                 throw (new System.Exception("Start recording during recording is performing"));
@@ -19,8 +22,9 @@ namespace GameReplay
             if (!isRecording)
                 throw (new System.Exception("Stop recording on recording is not performed"));
 
-            context = this;
             yield return _recordingState.closeRecordingSession();
+
+            Debug.Log("Saved replay capture to: " + pathToSaveCurrentCapture);
 
             Replay newReplay = new Replay(pathToSaveCurrentCapture);
             _recordingState = null;
@@ -28,8 +32,6 @@ namespace GameReplay
 
             resultCallback(newReplay);
         }
-
-        static MonoBehaviour context;
 
         private class RecordingState {
             public RecordingState(Camera inCamera, string inPathToSaveResult, float inFrameRate, FFmpegPreset inPreset) {
@@ -121,7 +123,6 @@ namespace GameReplay
         }
 
         private Camera replayRecordingCamera { get { return _replayRecordingCamera; } }
-        private bool isRecording { get { return (null != _recordingState); } }
 
         private static string folderToSaveCaptures { get { return Application.persistentDataPath + "/" + "GameReplay"; } }
         private string currentCaptureFileName { get { return "replayCapture" + _currentCaptureIndex; } }
