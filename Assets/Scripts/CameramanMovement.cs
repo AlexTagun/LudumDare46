@@ -10,6 +10,9 @@ public class CameramanMovement : MonoBehaviour {
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private int _jumpFrameTime;
     [SerializeField] private CharacterController _characterController;
+    [SerializeField] private Transform _cameraStartPos;
+    [SerializeField] private Transform _cameraEndPos;
+    [SerializeField] private Transform _cameraTransform;
 
     [Header("Shake Camera")]
     [SerializeField] private float _duractionShake;
@@ -24,6 +27,8 @@ public class CameramanMovement : MonoBehaviour {
     private Quaternion startRotation;
     private Quaternion verticalRotation;
     private Quaternion horizontalRotarion;
+
+
 
     private void Awake() {
         startRotation = transform.rotation;
@@ -48,5 +53,15 @@ public class CameramanMovement : MonoBehaviour {
     public void ShakeCamera ()
     {
         _camera.transform.DOShakePosition(_duractionShake);
+    }
+
+    public void LookAtCamera() {
+        _cameraTransform.DOLocalMove(_cameraEndPos.localPosition, 0.5f);
+        _cameraTransform.DOScale(_cameraEndPos.localScale, 0.5f);
+    }
+    
+    public void DontLookAtCamera() {
+        _cameraTransform.DOLocalMove(_cameraStartPos.localPosition, 0.5f);
+        _cameraTransform.DOScale(_cameraStartPos.localScale, 0.5f);
     }
 }
