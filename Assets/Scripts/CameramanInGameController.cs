@@ -7,6 +7,7 @@ public class CameramanInGameController : MonoBehaviour {
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private GameReplay.ReplayRecorder _replayRecorder;
     [SerializeField] private PopularityCollector _popularityCollector;
+    [SerializeField] private CameraEnergyManager _cameraEnergyManager;
 
     //TEMPORARY PUBLIC FOR TESTS. CHANGE PUBLIC TO PRIVATE IF YOU SEE IT AND REMOVE TEST
     public List<GameReplay.Replay> _replays = new List<GameReplay.Replay>();
@@ -48,6 +49,7 @@ public class CameramanInGameController : MonoBehaviour {
                 StartCoroutine(_cameramanMovement.LookAtCamera(() => {
                     _popularityCollector.setCollectingEnabled(true);
                     _replayRecorder.startRecording();
+                    _cameraEnergyManager.startSpendingEnergy();
                 }));
 
             }  else {
@@ -57,6 +59,7 @@ public class CameramanInGameController : MonoBehaviour {
                         _replays.Add(inReplay);
                         isPossibleToChangeCameraState = true;
                         _popularityCollector.setCollectingEnabled(false);
+                        _cameraEnergyManager.stopSpendingEnergy();
                     }));
                 }));
             }
