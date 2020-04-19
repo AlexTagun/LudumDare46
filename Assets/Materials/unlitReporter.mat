@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_unlitReporter
+  m_Name: unlitReporter
   m_Shader: {fileID: -6465566751694194690, guid: ffb395e242b16b1468e30642dd4125bb,
     type: 3}
   m_ShaderKeywords: 

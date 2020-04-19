@@ -128,6 +128,7 @@ MonoBehaviour:
   _cameramanMovement: {fileID: 2602980868393172019}
   _characterController: {fileID: 319074511559661802}
   _cameraEffectUI: {fileID: 0}
+  _replayRecorder: {fileID: 0}
 --- !u!114 &2602980868393172019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +182,7 @@ GameObject:
   - component: {fileID: 2602980868423871214}
   - component: {fileID: 2602980868423871213}
   - component: {fileID: 6230825132825403446}
+  - component: {fileID: 8777979703548221031}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -377,7 +379,22 @@ MonoBehaviour:
   _FOV: 60
   _nearPlane: 0.3
   _farPlane: 1000
-  _debug_drawGizmos: 1
+  _debug_drawGizmos: 0
+--- !u!114 &8777979703548221031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602980868423871209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065f5a00aed8d2040a15f78bfc86e06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _replayRecordingCamera: {fileID: 2602980868423871215}
+  _preset: 0
+  _frameRate: 60
 --- !u!1 &6412929693121514961
 GameObject:
   m_ObjectHideFlags: 0
