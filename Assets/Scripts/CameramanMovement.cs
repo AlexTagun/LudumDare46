@@ -14,6 +14,7 @@ public class CameramanMovement : MonoBehaviour {
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private Transform _cameraStartPos;
     [SerializeField] private Transform _cameraEndPos;
+    [SerializeField] private Transform _cameraEndGamePos;
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private Image _uiBlack;
     [SerializeField] private GameObject _cameraEffectUI;
@@ -83,5 +84,11 @@ public class CameramanMovement : MonoBehaviour {
         _cameraTransform.DOScale(_cameraStartPos.localScale, 0.5f);
         yield return new WaitForSeconds(0.5f);
         callback?.Invoke();
+    }
+
+    public IEnumerator MoveCameraToEndGamePos() {
+        _camera.transform.DOLocalMove(_cameraEndGamePos.localPosition, 5f);
+        _camera.transform.DORotate(_cameraEndGamePos.localRotation.eulerAngles, 5f);
+        yield return new WaitForSeconds(5f);
     }
 }

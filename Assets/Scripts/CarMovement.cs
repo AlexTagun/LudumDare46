@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class CarMovement : MonoBehaviour
 {
@@ -37,7 +39,14 @@ public class CarMovement : MonoBehaviour
         {
             int randomIndex = Random.Range(0, pointsToMove.Length);
             _navMeshAgent.SetDestination(pointsToMove[randomIndex].transform.position);
-            Debug.Log(pointsToMove[randomIndex].transform.position);
+            // Debug.Log(pointsToMove[randomIndex].transform.position);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.tag == "Player") {
+            EventManager.HandleOnEndGame(EventManager.EndGameType.Die);
         }
     }
 }
