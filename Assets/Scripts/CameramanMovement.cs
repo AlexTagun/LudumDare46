@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class CameramanMovement : MonoBehaviour {
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private int _jumpFrameTime;
     [SerializeField] private CharacterController _characterController;
+
+    [Header("Shake Camera")]
+    [SerializeField] private float _duractionShake;
+
+
 
     public float JumpSpeed => _jumpSpeed;
     public int JumpFrameTime => _jumpFrameTime;
@@ -39,5 +45,8 @@ public class CameramanMovement : MonoBehaviour {
         _characterController.Move(vel);
     }
 
-
+    public void ShakeCamera ()
+    {
+        _camera.transform.DOShakePosition(_duractionShake);
+    }
 }

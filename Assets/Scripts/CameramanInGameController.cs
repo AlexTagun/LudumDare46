@@ -12,6 +12,7 @@ public class CameramanInGameController : MonoBehaviour {
     private void Awake()
     {
         _cameraEffectUI.SetActive(false);
+        EventManager.OnCameraShake += _cameramanMovement.ShakeCamera;
     }
 
     private void Update()
@@ -51,6 +52,7 @@ public class CameramanInGameController : MonoBehaviour {
             }
             _cameraEffectUI.SetActive(!_cameraEffectUI.activeSelf);
         }
+
     }
 
     private IEnumerator Jump() {
