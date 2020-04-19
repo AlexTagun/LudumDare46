@@ -8,7 +8,7 @@ public class ReporterMovement : MonoBehaviour
     [SerializeField] private NavMeshAgent _navMeshAgent;
 
     public LineRenderer CurrentPath;
-    public bool _isRunning = false;
+    public bool _canRunning = false;
 
     private Vector3 nextWayPoint;
     private int curIndexWayPoint = 0;
@@ -22,7 +22,7 @@ public class ReporterMovement : MonoBehaviour
 
     void Update()
     {
-        if (_isRunning)
+        if (_canRunning)
         {
             MoveOnRoad();
         }
@@ -41,7 +41,7 @@ public class ReporterMovement : MonoBehaviour
             }
             else
             {
-                _isRunning = false;
+                _canRunning = false;
             }
         }
     }

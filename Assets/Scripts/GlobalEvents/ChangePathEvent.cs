@@ -9,7 +9,7 @@ public class ChangePathEvent : GlobalEvent
     {
         gameObject.SetActive(true);
         _reporterMovement.CurrentPath = gameObject.GetComponent<LineRenderer>();
-        _reporterMovement._isRunning = true;
+        _reporterMovement._canRunning = true;
     }
 
 }
