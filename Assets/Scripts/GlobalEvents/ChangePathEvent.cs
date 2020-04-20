@@ -12,6 +12,7 @@ public class ChangePathEvent : GlobalEvent
         _reporterMovement.CurrentPath = gameObject.GetComponent<LineRenderer>();
         _reporterMovement._canRunning = true;
         //anim Run
+        EventManager.HandleOnReporterAnim(EventManager.ReporterAnim.Run);
     }
 
 }

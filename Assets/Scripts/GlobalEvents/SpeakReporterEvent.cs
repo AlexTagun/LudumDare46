@@ -10,6 +10,7 @@ public class SpeakReporterEvent : GlobalEvent
     {
         // anim Report
         StartCoroutine(_uISubtitleText.ShowSubtitleText(_stageNumber));
+        EventManager.HandleOnReporterAnim(EventManager.ReporterAnim.Talk);
     }
 
     // Start is called before the first frame update
