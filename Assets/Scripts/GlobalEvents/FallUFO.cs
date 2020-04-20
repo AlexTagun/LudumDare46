@@ -46,6 +46,7 @@ public class FallUFO : MonoBehaviour
 
     private IEnumerator Execute()
     {
+
         isCircle = true;
         yield return new WaitForSeconds(_timeCircularMotion);
         isCircle = false;
