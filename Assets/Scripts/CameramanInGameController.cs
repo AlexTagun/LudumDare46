@@ -85,7 +85,7 @@ public class CameramanInGameController : MonoBehaviour {
             EventManager.HandleOnEndGame(EventManager.EndGameType.Die);
         }
 
-        if (0f == _cameraEnergyManager.energyRatio)
+        if (_cameraEnergyManager.energyRatio <= 0f)
             EventManager.HandleOnEndGame(EventManager.EndGameType.LowBattery);
     }
     private bool isPossibleToChangeCameraState = true;
