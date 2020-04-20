@@ -3,14 +3,11 @@ using UnityEngine.UI;
 
 public class CameraEnergyFootageUIObject : MonoBehaviour
 {
-    private void Start() {
-        StartCoroutine(dotBlinking());
-    }
-
     private void FixedUpdate() {
         updateEnergyText();
         updateEnergyImage();
         updatePopularityText();
+        updateDotBlinking();
     }
 
     private void updateEnergyText() {
@@ -40,11 +37,8 @@ public class CameraEnergyFootageUIObject : MonoBehaviour
         _popularityText.text = _popularityManager.popularityAmount.ToString();
     }
 
-    System.Collections.IEnumerator dotBlinking() {
-        while(true) {
-            yield return new WaitForSeconds(1f);
-            _dotImage.enabled = !_dotImage.enabled;
-        }
+    private void updateDotBlinking() {
+        _dotImage.enabled = (0 == (int)Time.fixedTime % 2);
     }
 
     //Fields

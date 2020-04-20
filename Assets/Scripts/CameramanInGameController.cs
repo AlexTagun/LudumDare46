@@ -19,6 +19,13 @@ public class CameramanInGameController : MonoBehaviour {
     {
         // _cameraEffectUI.SetActive(false);
         EventManager.OnCameraShake += _cameramanMovement.ShakeCamera;
+
+        EventManager.OnEndGame += beforeGameEndActions;
+    }
+
+    private void beforeGameEndActions(EventManager.EndGameType unused) {
+        if (_replayRecorder.isRecording)
+            _replayRecorder.stopRecording((GameReplay.Replay inReplay) => { });
     }
 
     private void Update()
@@ -57,14 +64,13 @@ public class CameramanInGameController : MonoBehaviour {
                 }));
 
             }  else {
-                isPossibleToChangeCameraState = false;
-                StartCoroutine(_cameramanMovement.DontLookAtCamera(() => {
-                    StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
-                        _replays.Add(inReplay);
-                        isPossibleToChangeCameraState = true;
-                        _popularityCollector.setCollectingEnabled(false);
-                        _cameraEnergyManager.stopSpendingEnergy();
-                    }));
+                StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
+                    _replays.Add(inReplay);
+                    isPossibleToChangeCameraState = true;
+                    _popularityCollector.setCollectingEnabled(false);
+                    _cameraEnergyManager.stopSpendingEnergy();
+
+                    StartCoroutine(_cameramanMovement.DontLookAtCamera());
                 }));
             }
         }
@@ -74,6 +80,9 @@ public class CameramanInGameController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F)) {
             EventManager.HandleOnEndGame(EventManager.EndGameType.Die);
         }
+
+        if (0f == _cameraEnergyManager.energyRatio)
+            EventManager.HandleOnEndGame(EventManager.EndGameType.LowBattery);
     }
     private bool isPossibleToChangeCameraState = true;
 
