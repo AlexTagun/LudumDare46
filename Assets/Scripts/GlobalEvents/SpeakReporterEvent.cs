@@ -8,7 +8,8 @@ public class SpeakReporterEvent : GlobalEvent
     [SerializeField] private int _stageNumber;
     protected override void Execute()
     {
-        _uISubtitleText.ShowSubtitleText(_stageNumber);
+        StartCoroutine(_uISubtitleText.ShowSubtitleText(_stageNumber));
+        Debug.Log("StartSpeak");
     }
 
     // Start is called before the first frame update

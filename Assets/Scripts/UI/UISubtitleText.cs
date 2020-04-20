@@ -18,6 +18,7 @@ public class UISubtitleText  : MonoBehaviour
     private void Awake()
     {
         _subtitleUIPanel.SetActive(false);
+
     }
 
     // Update is called once per frame
