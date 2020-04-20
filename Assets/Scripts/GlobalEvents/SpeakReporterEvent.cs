@@ -8,7 +8,9 @@ public class SpeakReporterEvent : GlobalEvent
     [SerializeField] private int _stageNumber;
     protected override void Execute()
     {
+        // anim Report
         StartCoroutine(_uISubtitleText.ShowSubtitleText(_stageNumber));
+        EventManager.HandleOnReporterAnim(EventManager.ReporterAnim.Talk);
     }
 
     // Start is called before the first frame update

@@ -41,4 +41,16 @@ public static class EventManager {
     public static void HandleOnEndGame(EndGameType type) {
         OnEndGame?.Invoke(type);
     }
+    
+    public enum ReporterAnim {
+        Run,
+        Talk,
+        Jump
+    }
+    
+    public static Action<ReporterAnim> OnReporterAnim;
+
+    public static void HandleOnReporterAnim(ReporterAnim state) {
+        OnReporterAnim?.Invoke(state);
+    }
 }
