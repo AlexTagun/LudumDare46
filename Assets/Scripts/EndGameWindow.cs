@@ -11,15 +11,19 @@ public class EndGameWindow : MonoBehaviour {
     [SerializeField] private CameramanMovement _cameramanMovement;
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _closeButton;
     [SerializeField] private GameReplay.ReplayPlayerObject _playerReplay = null;
     [SerializeField] private Image _back;
     [SerializeField] private CanvasGroup _diedImage;
     [SerializeField] private GameObject[] _objectsToOff;
+    [SerializeField] private Sprite _simpleBack;
+    [SerializeField] private Sprite _whaleBack;
 
     private void Awake() {
         EventManager.OnEndGame += Show;
         _playButton.onClick.AddListener(OnPlayButtonClicked);
         _restartButton.onClick.AddListener(OnRestartButtonClicked);
+        _closeButton.onClick.AddListener(OnCloseButtonClicked);
         _restartButton.gameObject.SetActive(false);
         _container.SetActive(false);
     }
@@ -28,6 +32,18 @@ public class EndGameWindow : MonoBehaviour {
         EventManager.gameState = EventManager.GameState.End;
         foreach (var obj in _objectsToOff) {
             obj.SetActive(false);
+        }
+
+        switch (endGameType) {
+            case EventManager.EndGameType.Win:
+                _back.sprite = _whaleBack;
+                break;
+            case EventManager.EndGameType.Die:
+                _back.sprite = _simpleBack;
+                break;
+            case EventManager.EndGameType.LowBattery:
+                _back.sprite = _simpleBack;
+                break;
         }
         StartCoroutine(EndGameAnimation());
         
@@ -70,5 +86,9 @@ public class EndGameWindow : MonoBehaviour {
         _playerReplay.gameObject.SetActive(false);
         _restartButton.gameObject.SetActive(true);
         yield return null;
+    }
+
+    private void OnCloseButtonClicked() {
+        Application.Quit();
     }
 }
