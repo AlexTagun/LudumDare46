@@ -43,7 +43,7 @@ public class EndGameWindow : MonoBehaviour {
     }
 
     private void OnRestartButtonClicked() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("StartMenu");
     }
 
     private void OnPlayButtonClicked() {
