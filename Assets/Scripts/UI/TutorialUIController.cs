@@ -28,12 +28,14 @@ public class TutorialUIController : MonoBehaviour
     public IEnumerator ShowTutorial ()
     {
         // window 1
+        EventManager.lockMovements = true;
         ShowTutorialUIPanel();
         yield return UpdateTutorialUI(0, 1);
         // window 2
         ChangeIcon(_iconsForTutorial[1]);
         ChangeText(_textsForTutorial[1]);
         _cameramanInGameController.CanMove = true;
+        EventManager.lockMovements = false;
         yield return WaitForClickOnW();
         // window 3
         yield return UpdateTutorialUI(0, 3);

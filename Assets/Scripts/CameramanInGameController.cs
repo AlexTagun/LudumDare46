@@ -32,6 +32,11 @@ public class CameramanInGameController : MonoBehaviour {
     {
         if(EventManager.gameState != EventManager.GameState.Gameplay) return;
         
+        // движение камеры и поворот player
+        _cameramanMovement.Rotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        
+        if(EventManager.lockMovements) return;
+        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -51,8 +56,7 @@ public class CameramanInGameController : MonoBehaviour {
         //velocity.y -= 9.8f * Time.deltaTime;
         _cameramanMovement.Move(velocity);
 
-        // движение камеры и поворот player
-        _cameramanMovement.Rotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        
 
         if (Input.GetMouseButtonDown(1) && CanShoot && isPossibleToChangeCameraState) {
             if (!_replayRecorder.isRecording) {

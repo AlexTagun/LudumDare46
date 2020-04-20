@@ -53,4 +53,6 @@ public static class EventManager {
     public static void HandleOnReporterAnim(ReporterAnim state) {
         OnReporterAnim?.Invoke(state);
     }
+
+    public static bool lockMovements = false;
 }
