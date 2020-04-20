@@ -44,7 +44,6 @@ public class PeopleMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "Player") {
             _npcAnimator.Die((() => Destroy(gameObject)));
         }
