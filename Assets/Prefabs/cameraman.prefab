@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 2602980868423871215}
-  _speed: 12
+  _speed: 4.5
   _speedRotation: 5
   _jumpSpeed: 0.12
   _jumpFrameTime: 5

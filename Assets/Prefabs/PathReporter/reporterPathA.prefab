@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6ee8527021e94449abfbc7b6a70cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsToExecute: 10
+  _secondsToExecute: 22
   _uISubtitleText: {fileID: 0}
   _stageNumber: 1
 --- !u!120 &4452552846510685515

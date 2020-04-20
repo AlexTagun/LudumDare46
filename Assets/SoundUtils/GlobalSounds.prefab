@@ -46,11 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sequenceElements:
-  - timeSpanToPlay: 60
+  - timeSpanToPlay: 118
     clipToPlay: {fileID: 8300000, guid: 3fe3224f68cbb6643b28f18e2a61d257, type: 3}
-  - timeSpanToPlay: 60
+  - timeSpanToPlay: 20
+    clipToPlay: {fileID: 8300000, guid: 67915edc528dc8e49bb51a2988844c80, type: 3}
+  - timeSpanToPlay: 50
     clipToPlay: {fileID: 8300000, guid: ff7077b3585d9404b89b2213843844ed, type: 3}
-  - timeSpanToPlay: 60
+  - timeSpanToPlay: 200
     clipToPlay: {fileID: 8300000, guid: 532796fccb5720543a6e68a29fb7ce07, type: 3}
   _timeSpanToChangeElements: 1
   _loopSounds: 1
@@ -607,7 +609,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9102086054935764683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e845638e3db3a48ad8800793450ecf, type: 3}
   m_Name: 

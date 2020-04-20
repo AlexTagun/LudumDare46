@@ -6,6 +6,7 @@ using UnityEngine;
 public class FallUFO : MonoBehaviour
 {
     [SerializeField] private int _secondsToExecute;
+    [SerializeField] private Transform _startPositionOnSky;
     [SerializeField] private Transform _pointToFallUFO;
     [SerializeField] private float _timeFalling;
     [SerializeField] private float _speedRotation;
@@ -46,7 +47,7 @@ public class FallUFO : MonoBehaviour
 
     private IEnumerator Execute()
     {
-
+        transform.position = _startPositionOnSky.position;
         isCircle = true;
         yield return new WaitForSeconds(_timeCircularMotion);
         isCircle = false;
