@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: unlitReporter
+  m_Name: unlitNpc1
   m_Shader: {fileID: -6465566751694194690, guid: ffb395e242b16b1468e30642dd4125bb,
     type: 3}
   m_ShaderKeywords: 
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_E9316CF5:
-        m_Texture: {fileID: 2800000, guid: 8dbefb921a1c6f24f864d2120a4ae5f1, type: 3}
+        m_Texture: {fileID: 2800000, guid: ef4bf7bd602453e438064888951e422f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
