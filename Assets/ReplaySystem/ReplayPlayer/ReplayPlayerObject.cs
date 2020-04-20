@@ -21,6 +21,11 @@ namespace GameReplay
             System.Action<Replay> inBeforeStartNextReplay,
             System.Action inLastReplayFinished)
         {
+            if (inReplays == null || inReplays.Count == 0) {
+                inLastReplayFinished();
+                yield break;
+            }
+            
             int theReplayIndexForExit = inReplays.Count;
             int theCurrentReplayIndex = 0;
 

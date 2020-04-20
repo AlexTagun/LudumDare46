@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndGameWindow : MonoBehaviour {
     [SerializeField] private GameObject _container;
     [SerializeField] private CameramanMovement _cameramanMovement;
     [SerializeField] private Button _playButton;
+    [SerializeField] private Button _restartButton;
     [SerializeField] private GameReplay.ReplayPlayerObject _playerReplay = null;
     [SerializeField] private Image _back;
     [SerializeField] private CanvasGroup _diedImage;
@@ -17,6 +19,8 @@ public class EndGameWindow : MonoBehaviour {
     private void Awake() {
         EventManager.OnEndGame += Show;
         _playButton.onClick.AddListener(OnPlayButtonClicked);
+        _restartButton.onClick.AddListener(OnRestartButtonClicked);
+        _restartButton.gameObject.SetActive(false);
         _container.SetActive(false);
     }
 
@@ -38,6 +42,10 @@ public class EndGameWindow : MonoBehaviour {
         _container.SetActive(true);
     }
 
+    private void OnRestartButtonClicked() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void OnPlayButtonClicked() {
         _playButton.gameObject.SetActive(false);
         List<GameReplay.Replay> theReplays = FindObjectOfType<CameramanInGameController>()._replays;
@@ -55,6 +63,12 @@ public class EndGameWindow : MonoBehaviour {
         StartCoroutine(_playerReplay.playReplays(theReplays,
             theAfterStartNextReplayPreporation,
             theBeforeStartNextReplay,
-            theLastReplayFinished));
+            (() => StartCoroutine(OnLastReplayFinished()))));
+    }
+
+    private IEnumerator OnLastReplayFinished() {
+        _playerReplay.gameObject.SetActive(false);
+        _restartButton.gameObject.SetActive(true);
+        yield return null;
     }
 }
