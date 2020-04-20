@@ -151,6 +151,11 @@ PrefabInstance:
       propertyPath: _uISubtitleText
       value: 
       objectReference: {fileID: 137935915}
+    - target: {fileID: 4822501116449458399, guid: 32fa08c024544f34db8848a6c63e3cfe,
+        type: 3}
+      propertyPath: _secondsToExecute
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 8734477115280035222, guid: 32fa08c024544f34db8848a6c63e3cfe,
         type: 3}
       propertyPath: m_Name
@@ -1021,6 +1026,11 @@ PrefabInstance:
       propertyPath: _uISubtitleText
       value: 
       objectReference: {fileID: 137935915}
+    - target: {fileID: 2108192543700435986, guid: 51d77a249cc15114ab5cb4fb41d5069a,
+        type: 3}
+      propertyPath: _secondsToExecute
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4452552846510685514, guid: 51d77a249cc15114ab5cb4fb41d5069a,
         type: 3}
       propertyPath: m_Name
@@ -1442,6 +1452,11 @@ PrefabInstance:
       propertyPath: _reporterMovement
       value: 
       objectReference: {fileID: 1432330361}
+    - target: {fileID: 8865137316791045301, guid: d30782b65e5619a44886527df7f32ad4,
+        type: 3}
+      propertyPath: _secondsToExecute
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d30782b65e5619a44886527df7f32ad4, type: 3}
 --- !u!4 &1687634912 stripped
@@ -1461,6 +1476,11 @@ PrefabInstance:
       propertyPath: _cameramanInGameController
       value: 
       objectReference: {fileID: 794506863}
+    - target: {fileID: 2968806432479157992, guid: 116e2a7b7256ac143b4c1d91dac6869a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3558813014581326197, guid: 116e2a7b7256ac143b4c1d91dac6869a,
         type: 3}
       propertyPath: _energyManager
@@ -1477,6 +1497,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5247191019461125946, guid: 116e2a7b7256ac143b4c1d91dac6869a,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269440911502311451, guid: 116e2a7b7256ac143b4c1d91dac6869a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269440911502311451, guid: 116e2a7b7256ac143b4c1d91dac6869a,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269440911502311451, guid: 116e2a7b7256ac143b4c1d91dac6869a,
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
