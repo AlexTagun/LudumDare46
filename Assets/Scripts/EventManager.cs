@@ -16,11 +16,18 @@ public static class EventManager {
         OnCameraShake?.Invoke();
     }
 
+    public static Action OnStartGlobalTimer;
+    public static void HandleOnStartGlobalTimer ()
+    {
+        OnStartGlobalTimer?.Invoke();
+    }
+
     public enum EndGameType {
         Win,
         Die,
         LowBattery
     }
+    
 
     public static Action<EndGameType> OnEndGame;
 
