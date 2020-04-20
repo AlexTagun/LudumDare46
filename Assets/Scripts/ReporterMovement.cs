@@ -30,20 +30,28 @@ public class ReporterMovement : MonoBehaviour
 
     public void MoveOnRoad ()
     {
-
-        if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
+        if (curIndexWayPoint == 0)
         {
-            if (curIndexWayPoint < CurrentPath.positionCount - 1)
+            nextWayPoint = CurrentPath.GetPosition(curIndexWayPoint);
+            _navMeshAgent.SetDestination(nextWayPoint);
+            curIndexWayPoint++;
+        }
+        else
+        {
+            if (_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
-                curIndexWayPoint++;
-                nextWayPoint = CurrentPath.GetPosition(curIndexWayPoint);
-                _navMeshAgent.SetDestination(nextWayPoint);
-            }
-            else
-            {
-                _canRunning = false;
-                curIndexWayPoint = 0;
-                //anim Idle
+                if (curIndexWayPoint <= CurrentPath.positionCount - 1)
+                {
+                    nextWayPoint = CurrentPath.GetPosition(curIndexWayPoint);
+                    _navMeshAgent.SetDestination(nextWayPoint);
+                    curIndexWayPoint++;
+                }
+                else
+                {
+                    _canRunning = false;
+                    curIndexWayPoint = 0;
+                    //anim Idle
+                }
             }
         }
     }
