@@ -8,13 +8,17 @@ public class TimeManager : MonoBehaviour {
     private TimeHandler _timer;
     
     private void Awake() {
-        _timer = new TimeHandler(1f, EventManager.HandleOnSecondTick);
+
     }
 
     private void Update() {
         _timer.Update(Time.deltaTime);
     }
 
+    private void StartTimer()
+    {
+        _timer = new TimeHandler(1f, EventManager.HandleOnSecondTick);
+    }
 
     private class TimeHandler {
         private readonly Action<int> _handler;
