@@ -9,6 +9,9 @@ public class CameramanInGameController : MonoBehaviour {
     [SerializeField] private PopularityCollector _popularityCollector;
     [SerializeField] private CameraEnergyManager _cameraEnergyManager;
 
+    public bool CanMove = false;
+    public bool CanShoot = false;
+
     //TEMPORARY PUBLIC FOR TESTS. CHANGE PUBLIC TO PRIVATE IF YOU SEE IT AND REMOVE TEST
     public List<GameReplay.Replay> _replays = new List<GameReplay.Replay>();
 
@@ -24,15 +27,11 @@ public class CameramanInGameController : MonoBehaviour {
         float z = Input.GetAxis("Vertical");
 
         Vector3 velocity = transform.right * x + transform.forward * z;
-        //velocity.y = -9.8f * Time.deltaTime;
-
-
-        // движение камеры и поворот player
-        _cameramanMovement.Rotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        velocity.y -= 9.8f * Time.deltaTime;
 
         if (_characterController.isGrounded)
         {
-            // velocity.y = 0;
+                // velocity.y = 0;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 // velocity.y = _cameramanMovement.JumpSpeed * Time.deltaTime;
@@ -40,10 +39,13 @@ public class CameramanInGameController : MonoBehaviour {
                 StartCoroutine(Jump());
             };
         }
-        velocity.y -= 9.8f * Time.deltaTime;
+        //velocity.y -= 9.8f * Time.deltaTime;
         _cameramanMovement.Move(velocity);
 
-        if (Input.GetMouseButtonDown(1) && isPossibleToChangeCameraState) {
+        // движение камеры и поворот player
+        _cameramanMovement.Rotate(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        if (Input.GetMouseButtonDown(1) && CanShoot && isPossibleToChangeCameraState) {
             if (!_replayRecorder.isRecording) {
                 
                 StartCoroutine(_cameramanMovement.LookAtCamera(() => {
