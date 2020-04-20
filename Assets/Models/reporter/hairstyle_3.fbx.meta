@@ -3,7 +3,17 @@ guid: 371058e9f455317468c70acc88602dee
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hairstyle_3
+    second: {fileID: 2100000, guid: a56198a1a87b6a148a1f109dc69ae5d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hairstyle_ribbon
+    second: {fileID: 2100000, guid: bec547c4a8b191244ae686b9beef17e0, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
