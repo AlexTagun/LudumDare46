@@ -46,15 +46,15 @@ public class SoundSequencePlayer : MonoBehaviour
         inFadingInAudio.Play();
 
         while (_soundsChangingRemainingTime > 0f) {
-            inFadingOutAudio.volume = _soundsChangingRemainingTime / _timeSpanToChangeElements;
-            inFadingInAudio.volume = 1f - _soundsChangingRemainingTime / _timeSpanToChangeElements;
+            inFadingOutAudio.volume = (_soundsChangingRemainingTime / _timeSpanToChangeElements) * _volume;
+            inFadingInAudio.volume = (1f - _soundsChangingRemainingTime / _timeSpanToChangeElements) * _volume;
 
             _soundsChangingRemainingTime -= Time.fixedDeltaTime;
             yield return null;
         }
 
-        inFadingOutAudio.volume = 0f;
-        inFadingInAudio.volume = 1f;
+        inFadingOutAudio.volume = 0f * _volume;
+        inFadingInAudio.volume = 1f * _volume;
 
         inFadingOutAudio.Stop();
     }
@@ -71,6 +71,7 @@ public class SoundSequencePlayer : MonoBehaviour
 
     [SerializeField] private bool _loopSounds = true;
     [SerializeField] private bool _loopLastSound = true;
+    [SerializeField] private float _volume = 1f;
 
     [SerializeField] private AudioSource _audioSourceA;
     [SerializeField] private AudioSource _audioSourceB;

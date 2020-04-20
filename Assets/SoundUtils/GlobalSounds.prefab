@@ -55,6 +55,7 @@ MonoBehaviour:
   _timeSpanToChangeElements: 1
   _loopSounds: 1
   _loopLastSound: 1
+  _volume: 0.3
   _audioSourceA: {fileID: 612902669463934023}
   _audioSourceB: {fileID: 8410838421006585799}
 --- !u!1 &3666490473187098009
