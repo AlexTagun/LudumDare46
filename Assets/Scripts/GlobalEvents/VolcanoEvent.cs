@@ -9,6 +9,7 @@ public class VolcanoEvent : GlobalEvent
     [SerializeField] private float _positionOnGround;
     [SerializeField] private float _preparationTimeToEruption;
     [SerializeField] private ParticleSystem _particleSystemEruptionVolcano;
+    [SerializeField] private Animator _animator;
 
     protected override void Execute()
     {
@@ -19,6 +20,7 @@ public class VolcanoEvent : GlobalEvent
     private void Awake()
     {
        _particleSystemEruptionVolcano.gameObject.SetActive(false);
+       _animator.enabled = false;
     }
 
 
@@ -28,5 +30,7 @@ public class VolcanoEvent : GlobalEvent
         yield return new WaitForSeconds(_preparationTimeToEruption + _timeRiseFromUnderground);
         _particleSystemEruptionVolcano.gameObject.SetActive(true);
         _particleSystemEruptionVolcano.Play();
+        _animator.enabled = true;
+        _animator.Play("volcano");
     }
 }
