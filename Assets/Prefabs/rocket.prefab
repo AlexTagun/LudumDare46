@@ -54,7 +54,7 @@ MonoBehaviour:
   _positionOnGround: 8
   _preparationTime: 3
   _duractionFly: 10
-  _endPositionY: 700
+  _endPositionY: 300
   _speedRotation: 500
 --- !u!114 &7598707461102605048
 MonoBehaviour:

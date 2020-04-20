@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f12147111bf3e4489cfb91aca5a9550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsToExecute: 1
+  _secondsToExecute: 123
   _timeRiseFromUnderground: 10
   _positionOnGround: 13
   _preparationTimeToEruption: 2

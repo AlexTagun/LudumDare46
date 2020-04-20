@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sequenceElements:
-  - timeSpanToPlay: 118
+  - timeSpanToPlay: 95
     clipToPlay: {fileID: 8300000, guid: 3fe3224f68cbb6643b28f18e2a61d257, type: 3}
   - timeSpanToPlay: 20
     clipToPlay: {fileID: 8300000, guid: 67915edc528dc8e49bb51a2988844c80, type: 3}
-  - timeSpanToPlay: 50
+  - timeSpanToPlay: 100
     clipToPlay: {fileID: 8300000, guid: ff7077b3585d9404b89b2213843844ed, type: 3}
   - timeSpanToPlay: 200
     clipToPlay: {fileID: 8300000, guid: 532796fccb5720543a6e68a29fb7ce07, type: 3}
