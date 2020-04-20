@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class GlobalEvent : MonoBehaviour {
     [SerializeField] private int _secondsToExecute;
 
-    private void Awake() {
+    private void Start() {
         EventManager.OnSecondTick += OnSecondTick;
     }
 

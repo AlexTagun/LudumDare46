@@ -1,28 +1,29 @@
-﻿using DG.Tweening;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class VolcanoEruptionEvent : GlobalEvent
+public class VolcanoEvent : GlobalEvent
 {
     [SerializeField] private float _timeRiseFromUnderground;
     [SerializeField] private float _positionOnGround;
     [SerializeField] private float _preparationTimeToEruption;
     [SerializeField] private ParticleSystem _particleSystemEruptionVolcano;
 
-    private void Awake()
-    {
-        _particleSystemEruptionVolcano.gameObject.SetActive(false);
-    }
     protected override void Execute()
     {
-        Debug.Log("Volcano");
-        StartCoroutine(VolcanoEruption());  
+        StartCoroutine(VolcanoEruption());
     }
+
+
+    private void Awake()
+    {
+       _particleSystemEruptionVolcano.gameObject.SetActive(false);
+    }
+
 
     private IEnumerator VolcanoEruption()
     {
-        Debug.Log("12231");
         transform.DOMoveY(_positionOnGround, _timeRiseFromUnderground);
         yield return new WaitForSeconds(_preparationTimeToEruption + _timeRiseFromUnderground);
         _particleSystemEruptionVolcano.gameObject.SetActive(true);
