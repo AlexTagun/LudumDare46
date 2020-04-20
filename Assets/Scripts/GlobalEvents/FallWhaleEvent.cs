@@ -8,12 +8,23 @@ public class FallWhaleEvent : GlobalEvent
     [SerializeField] private Transform _pointToFallWhale;
     [SerializeField] private float _timeFalling;
     [SerializeField] private float _speedRotation;
+    [SerializeField] private int _secondsToExecute;
 
-    private void Start()
-    {
+    private void Start() {
+        EventManager.OnSecondTick += OnSecondTick;
+        gameObject.SetActive(false);
+    }
+
+    private void OnSecondTick(int second) {
+        Debug.Log(second + " : " + gameObject.name);
+        if (second == _secondsToExecute) {
+            Execute();
+            EventManager.OnSecondTick -= OnSecondTick;
+        }
     }
     protected override void Execute()
     {
+        gameObject.SetActive(true);
         FallingWhale();
     }
 
