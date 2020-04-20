@@ -16,7 +16,6 @@ public class FallWhaleEvent : GlobalEvent
     }
 
     private void OnSecondTick(int second) {
-        Debug.Log(second + " : " + gameObject.name);
         if (second == _secondsToExecute) {
             Execute();
             EventManager.OnSecondTick -= OnSecondTick;
