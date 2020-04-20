@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6283316799850184889}
   - component: {fileID: 6283316799850184888}
+  - component: {fileID: 4730594945454408063}
   - component: {fileID: 6283316799850184838}
   m_Layer: 0
   m_Name: reporterPathC
@@ -46,6 +47,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _secondsToExecute: 60
   _reporterMovement: {fileID: 0}
+--- !u!114 &4730594945454408063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6283316799850184839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd6ee8527021e94449abfbc7b6a70cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _secondsToExecute: 80
+  _uISubtitleText: {fileID: 0}
+  _stageNumber: 3
 --- !u!120 &6283316799850184838
 LineRenderer:
   m_ObjectHideFlags: 0
