@@ -8,6 +8,7 @@ public class SpeakReporterEvent : GlobalEvent
     [SerializeField] private int _stageNumber;
     protected override void Execute()
     {
+        // anim Report
         StartCoroutine(_uISubtitleText.ShowSubtitleText(_stageNumber));
     }
 
