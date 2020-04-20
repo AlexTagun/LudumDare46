@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5701118947007240622}
+  - component: {fileID: 2377527339654708567}
   m_Layer: 0
-  m_Name: vulcano
+  m_Name: volcano
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +33,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2377527339654708567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509626120068589583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f531ecf6b87a61546939e3e0b82c3244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _secondsToExecute: 10
+  _timeRiseFromUnderground: 10
+  _positionOnGround: 13
+  _preparationTimeToEruption: 4
+  _particleSystemEruptionVolcano: {fileID: 293019197389795425}
 --- !u!1001 &481582667504985389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -148,6 +166,12 @@ PrefabInstance:
 --- !u!4 &481582667504677881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 480980, guid: 86352b66abc6aa540a136e93d36f346e,
+    type: 3}
+  m_PrefabInstance: {fileID: 481582667504985389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &293019197389795425 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198140285255374156, guid: 86352b66abc6aa540a136e93d36f346e,
     type: 3}
   m_PrefabInstance: {fileID: 481582667504985389}
   m_PrefabAsset: {fileID: 0}

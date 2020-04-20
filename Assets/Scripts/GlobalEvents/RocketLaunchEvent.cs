@@ -20,7 +20,7 @@ public class RocketLaunchEvent : GlobalEvent {
     private IEnumerator LaunchRocket ()
     {
         transform.DOMoveY(_positionOnGround, _timeRiseFromUnderground);
-        yield return new WaitForSeconds(_preparationTime);
+        yield return new WaitForSeconds(_preparationTime + _timeRiseFromUnderground);
         transform.DORotate(Vector3.up * _speedRotation, _duractionFly);
         transform.DOMoveY(_endPositionY, _duractionFly).OnComplete(() => { Destroy(gameObject); });
     }
