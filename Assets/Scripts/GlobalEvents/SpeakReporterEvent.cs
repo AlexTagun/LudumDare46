@@ -9,7 +9,6 @@ public class SpeakReporterEvent : GlobalEvent
     protected override void Execute()
     {
         StartCoroutine(_uISubtitleText.ShowSubtitleText(_stageNumber));
-        Debug.Log("StartSpeak");
     }
 
     // Start is called before the first frame update

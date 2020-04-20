@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6127477609147107577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051968199775473253}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2051968199775473253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127477609147107577}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8980381811851482320}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8980381811851482326
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,13 +57,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8980381811851482326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.72, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4168659125725961991}
   - {fileID: 8980381813897074143}
   - {fileID: 578465416181158364}
   - {fileID: 8140542542074606196}
+  - {fileID: 2051968199775473253}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,7 +81,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _secondsToExecute: 3
-  _duraction: 10
+  _timeRiseFromUnderground: 0
+  _positionOnGround: 0
+  _preparationTime: 0
+  _duractionFly: 0
   _endPositionY: 50
   _speedRotation: 500
 --- !u!114 &7598707461102605048
@@ -268,7 +302,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 1312e348458d44a44a9135de19640b33,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9916942
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1312e348458d44a44a9135de19640b33,
         type: 3}
@@ -341,11 +375,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434336, guid: a7ca23c838d67a144b25263168c33353, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 434336, guid: a7ca23c838d67a144b25263168c33353, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.69
+      value: -1.62
       objectReference: {fileID: 0}
     - target: {fileID: 434336, guid: a7ca23c838d67a144b25263168c33353, type: 3}
       propertyPath: m_LocalPosition.z
@@ -393,6 +427,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434336, guid: a7ca23c838d67a144b25263168c33353, type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19815710, guid: a7ca23c838d67a144b25263168c33353, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19815710, guid: a7ca23c838d67a144b25263168c33353, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19815710, guid: a7ca23c838d67a144b25263168c33353, type: 3}
+      propertyPath: InitialModule.startRotationX.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19815710, guid: a7ca23c838d67a144b25263168c33353, type: 3}
+      propertyPath: InitialModule.startRotationY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198135933826093756, guid: a7ca23c838d67a144b25263168c33353,
+        type: 3}
+      propertyPath: looping
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
