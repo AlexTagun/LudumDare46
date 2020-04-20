@@ -261,6 +261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _secondBetweenWindow: 3
+  _cameramanInGameController: {fileID: 2602980868393172016, guid: a48389a3f3b1d2d48bf3151d61630f8c,
+    type: 3}
   _tutorialUIPanel: {fileID: 2080129306528919077}
   _iconImage: {fileID: 7407715593514280739}
   _textPlaceUI: {fileID: 2097370045338060582}
