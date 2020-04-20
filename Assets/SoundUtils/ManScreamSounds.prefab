@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4305664131065804407
+--- !u!1 &2524661902153523776
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6397307082523106219}
-  - component: {fileID: 526213340957432516}
-  - component: {fileID: 7954325896973462023}
+  - component: {fileID: 4615733101642026908}
+  - component: {fileID: 2271168911692336883}
+  - component: {fileID: 8550890295175740976}
   m_Layer: 0
-  m_Name: ScreamSoundSource
+  m_Name: ManScreamSounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6397307082523106219
+--- !u!4 &4615733101642026908
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4305664131065804407}
+  m_GameObject: {fileID: 2524661902153523776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &526213340957432516
+--- !u!82 &2271168911692336883
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4305664131065804407}
+  m_GameObject: {fileID: 2524661902153523776}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -137,25 +137,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7954325896973462023
+--- !u!114 &8550890295175740976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4305664131065804407}
+  m_GameObject: {fileID: 2524661902153523776}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2e845638e3db3a48ad8800793450ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _soundVariants:
-  - {fileID: 8300000, guid: fa5dbb7c3ddbf2e47a64314d0245c391, type: 3}
-  - {fileID: 8300000, guid: 3ed94b45816f4ce4683c9ce8266d12e4, type: 3}
   - {fileID: 8300000, guid: 7d3e96e8b6dc7fe4e949cbb06cfc25bb, type: 3}
+  - {fileID: 8300000, guid: d4968fad7c0143e4e997d867145af126, type: 3}
   - {fileID: 8300000, guid: df7d72708fd2302468472df4e2ac2209, type: 3}
   _minTimeBetweenSounds: 1
   _maxTimeBetweenSounds: 4
   _selectVariantOnce: 1
   _delayOnStart: 1
-  _audioSource: {fileID: 526213340957432516}
+  _audioSource: {fileID: 2271168911692336883}

@@ -282,7 +282,7 @@ Transform:
   - {fileID: 1441321745196296570}
   - {fileID: 2168132490579189169}
   m_Father: {fileID: 5964775491274796406}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1441321745307216001
 MeshFilter:
@@ -1168,6 +1168,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8617585444233260649}
   - {fileID: 1441321745307216014}
   - {fileID: 284900539158205623}
   m_Father: {fileID: 0}
@@ -2574,6 +2575,81 @@ Transform:
   m_Father: {fileID: 9051454319118881500}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.10202178, y: 0, z: 0}
+--- !u!1001 &3409256426168186306
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5964775491274796406}
+    m_Modifications:
+    - target: {fileID: 4305664131065804407, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_Name
+      value: WomanScreamSoundSource
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3bfe9043b5bc45540b5822155fbec84a, type: 3}
+--- !u!4 &8617585444233260649 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3409256426168186306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5084176166996033453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2619,7 +2695,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 371058e9f455317468c70acc88602dee,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 371058e9f455317468c70acc88602dee,
         type: 3}
