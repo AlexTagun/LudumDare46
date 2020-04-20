@@ -281,8 +281,10 @@ Transform:
   m_Children:
   - {fileID: 1441321745196296570}
   - {fileID: 2168132490579189169}
+  - {fileID: 8617585444233260649}
+  - {fileID: 5689148078810034489}
   m_Father: {fileID: 5964775491274796406}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1441321745307216001
 MeshFilter:
@@ -1168,10 +1170,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8617585444233260649}
   - {fileID: 1441321745307216014}
   - {fileID: 284900539158205623}
-  - {fileID: 5689148078810034489}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2581,7 +2581,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5964775491274796406}
+    m_TransformParent: {fileID: 1441321745307216014}
     m_Modifications:
     - target: {fileID: 1443760485254981514, guid: a946d6769b87c734ca7249cdf400298b,
         type: 3}
@@ -2656,7 +2656,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5964775491274796406}
+    m_TransformParent: {fileID: 1441321745307216014}
     m_Modifications:
     - target: {fileID: 4305664131065804407, guid: 3bfe9043b5bc45540b5822155fbec84a,
         type: 3}
@@ -2701,7 +2701,7 @@ PrefabInstance:
     - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6397307082523106219, guid: 3bfe9043b5bc45540b5822155fbec84a,
         type: 3}
@@ -2771,7 +2771,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 371058e9f455317468c70acc88602dee,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 371058e9f455317468c70acc88602dee,
         type: 3}

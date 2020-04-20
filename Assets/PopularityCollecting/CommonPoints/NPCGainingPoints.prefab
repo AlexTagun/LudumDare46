@@ -60,8 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf2215890b6cc448b1af6e4261009d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeBetweenGainings: 0.5
-  _popularityPerGaining: 1
+  _timeBetweenGainings: 2
+  _popularityPerGaining: 5
 --- !u!1 &4804470614613135813
 GameObject:
   m_ObjectHideFlags: 0
