@@ -49,6 +49,7 @@ public class TutorialUIController : MonoBehaviour
         // window 6
         yield return UpdateTutorialUI(0, 6);
         // window 7
+        EventManager.HandleOnStartGlobalTimer(); // запускается глобальное время
         ChangeIcon(_iconsForTutorial[1]);
         ChangeText(_textsForTutorial[6]);
         _cameramanInGameController.CanShoot = true;

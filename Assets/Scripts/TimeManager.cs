@@ -8,11 +8,12 @@ public class TimeManager : MonoBehaviour {
     private TimeHandler _timer;
     
     private void Awake() {
-
+        EventManager.OnStartGlobalTimer += StartTimer;
     }
 
     private void Update() {
-        _timer.Update(Time.deltaTime);
+        
+        _timer?.Update(Time.deltaTime);
     }
 
     private void StartTimer()

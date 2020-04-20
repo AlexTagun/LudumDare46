@@ -42,6 +42,7 @@ public class ReporterMovement : MonoBehaviour
             else
             {
                 _canRunning = false;
+                curIndexWayPoint = 0;
                 //anim Idle
             }
         }
