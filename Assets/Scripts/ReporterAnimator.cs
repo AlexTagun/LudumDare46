@@ -6,23 +6,38 @@ using UnityEngine;
 public class ReporterAnimator : MonoBehaviour {
     [SerializeField] private Animator _animator;
 
+    private Transform _player;
+    private bool _isNeedToLookAtPlayer = false;
+
     private void Awake() {
         EventManager.OnReporterAnim += StartAnimation;
         // StartAnimation(EventManager.ReporterAnim.Run);
+    }
+
+    private void Start() {
+        _player = GameObject.FindWithTag("Player").transform;
     }
 
     private void StartAnimation(EventManager.ReporterAnim state) {
         switch (state) {
             case EventManager.ReporterAnim.Run:
                 Run();
+                _isNeedToLookAtPlayer = false;
                 break;
             case EventManager.ReporterAnim.Talk:
                 Talk();
+                _isNeedToLookAtPlayer = true;
                 break;
             case EventManager.ReporterAnim.Jump:
                 Jump();
+                _isNeedToLookAtPlayer = false;
                 break;
         }
+    }
+
+    private void Update() {
+        if(!_isNeedToLookAtPlayer) return;
+        transform.LookAt(_player);
     }
 
     public void Run() {

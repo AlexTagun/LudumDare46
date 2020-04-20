@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeakReporterEvent : GlobalEvent
-{
+public class SpeakReporterEvent : MonoBehaviour {
+    [SerializeField] private int _secondsToExecute;
     [SerializeField] private UISubtitleText _uISubtitleText;
     [SerializeField] private int _stageNumber;
-    protected override void Execute()
-    {
+    
+    private void Start() {
+        EventManager.OnSecondTick += OnSecondTick;
+    }
+
+    private void OnSecondTick(int second) {
+        // Debug.Log(second + " : " + gameObject.name);
+        if (second == _secondsToExecute) {
+            Execute();
+            EventManager.OnSecondTick -= OnSecondTick;
+        }
+    }
+
+    private void Execute() {
         // anim Report
         StartCoroutine(_uISubtitleText.ShowSubtitleText(_stageNumber));
         EventManager.HandleOnReporterAnim(EventManager.ReporterAnim.Talk);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
