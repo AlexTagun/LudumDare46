@@ -49,12 +49,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07789a7ad00cf624fa7226d5d1f27058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsToExecute: 10
+  _secondsToExecute: 35
   _timeRiseFromUnderground: 3
-  _positionOnGround: 10
+  _positionOnGround: 8
   _preparationTime: 3
   _duractionFly: 10
-  _endPositionY: 300
+  _endPositionY: 700
   _speedRotation: 500
 --- !u!114 &7598707461102605048
 MonoBehaviour:

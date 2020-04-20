@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f259ac06dbf29304182aaa8d3016bfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsToExecute: 60
+  _secondsToExecute: 164
   _reporterMovement: {fileID: 0}
 --- !u!114 &4772418727016866934
 MonoBehaviour:
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6ee8527021e94449abfbc7b6a70cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsToExecute: 99
+  _secondsToExecute: 229
   _uISubtitleText: {fileID: 0}
   _stageNumber: 5
 --- !u!120 &90964948786782628
