@@ -2,6 +2,10 @@
 
 public class PopularityForTargetsUIObject : MonoBehaviour
 {
+    private void Start() {
+        _popularityCollector = FindObjectOfType<PopularityCollector>();
+    }
+
     private void FixedUpdate() {
         PopularitySource[] theCurrentPopularitySources = _popularityCollector.collectedPopularitySources;
         int theActualCollectedPopularitySourcesNum = _popularityCollector.actualCollectedPopularitySourcesNum;
@@ -24,8 +28,7 @@ public class PopularityForTargetsUIObject : MonoBehaviour
     [SerializeField] private WorldObjectsAttachedUIManger _worldObjectsAttachedUIManger = null;
     [SerializeField] private PopularityForTargetUIObject _popularityForTargetUIPrefab = null;
 
-    [SerializeField] private PopularityCollector _popularityCollector = null;
-
+    private PopularityCollector _popularityCollector = null;
     private PopularitySource[] _previousCollectedPopularitySourcesArray = new PopularitySource[4];
     private int _actualPreviousCollectedPopularitySourcesArrayNum = 0;
 }

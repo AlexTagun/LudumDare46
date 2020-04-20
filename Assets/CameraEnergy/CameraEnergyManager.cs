@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraEnergyManager : MonoBehaviour
 {
@@ -14,7 +12,8 @@ public class CameraEnergyManager : MonoBehaviour
     }
 
     private void updateSpendingEnergy() {
-        _energyAmount -= Time.fixedDeltaTime;
+        if (_energyAmount > 0f)
+            _energyAmount -= Time.fixedDeltaTime;
     }
 
     private void Awake() {
