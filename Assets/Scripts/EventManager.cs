@@ -28,6 +28,13 @@ public static class EventManager {
         LowBattery
     }
     
+    public enum GameState {
+        Gameplay,
+        End
+    }
+
+    public static GameState gameState = GameState.Gameplay;
+    
 
     public static Action<EndGameType> OnEndGame;
 

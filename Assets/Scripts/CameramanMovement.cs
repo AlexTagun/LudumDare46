@@ -87,8 +87,11 @@ public class CameramanMovement : MonoBehaviour {
     }
 
     public IEnumerator MoveCameraToEndGamePos() {
-        _camera.transform.DOLocalMove(_cameraEndGamePos.localPosition, 5f);
-        _camera.transform.DORotate(_cameraEndGamePos.localRotation.eulerAngles, 5f);
-        yield return new WaitForSeconds(5f);
+        _camera.transform.DOLocalMove(_cameraEndGamePos.localPosition, 4f);
+        _camera.transform.DORotate(_cameraEndGamePos.localRotation.eulerAngles, 4f);
+        
+        yield return new WaitForSeconds(3f);
+        _uiBlack.DOFade(1, 1f);
+        yield return new WaitForSeconds(1f);
     }
 }

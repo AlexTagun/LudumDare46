@@ -23,6 +23,8 @@ public class CameramanInGameController : MonoBehaviour {
 
     private void Update()
     {
+        if(EventManager.gameState != EventManager.GameState.Gameplay) return;
+        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -65,6 +67,12 @@ public class CameramanInGameController : MonoBehaviour {
                     }));
                 }));
             }
+        }
+        
+        //TODO: DELETE
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+            EventManager.HandleOnEndGame(EventManager.EndGameType.Die);
         }
     }
     private bool isPossibleToChangeCameraState = true;
