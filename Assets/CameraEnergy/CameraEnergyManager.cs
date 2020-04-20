@@ -6,7 +6,7 @@ public class CameraEnergyManager : MonoBehaviour
 {
     public void startSpendingEnergy() { _isUsingEnergy = true; }
     public void stopSpendingEnergy() { _isUsingEnergy = false; }
-    public float energyAspectRatio => _energyAmount / _startingEnergyAmount;
+    public float energyRatio => _energyAmount / _startingEnergyAmount;
 
     private void FixedUpdate() {
         if (_isUsingEnergy)

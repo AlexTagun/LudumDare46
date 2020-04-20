@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PopularityManager : MonoBehaviour
 {
+    public int popularityAmount => _popularityAmount;
+
     public void gainPopularity(int inPopularityToGain) {
         _popularityAmount += inPopularityToGain;
     }
