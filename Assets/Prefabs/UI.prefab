@@ -768,7 +768,7 @@ MonoBehaviour:
   _textPlaceUI: {fileID: 3967280196999175135}
   _textForFirstReport:
   - I'm May and we are broadcasting live from the city of Roxintan, where the local
-    prophet predicts the end of the world today!For viewers of A-Live TV channel,
+    prophet predicts the end of the world today! For viewers of A-Live TV channel,
     such statements are already commonplace...
   - For viewers of A-Live TV channel, such statements are already commonplace...
   - I wonder what new nonsense the prophet will come up with this time...
@@ -795,11 +795,7 @@ MonoBehaviour:
   - You won't believe it! An alien ship has just landed on the field!
   - Oh, no! It seems that the landing was unsuccessful! What a pity, apparently,
     the first contact with an alien mind is delayed.
-  - "\u0417\u043D\u0430\u0435\u0448\u044C \u0433\u0434\u0435 \u043E\u0442\u043B\u0438\u0447\u043D\u044B\u0435
-    \u043F\u0430\u043D\u043E\u0440\u0430\u043C\u043D\u044B\u0435 \u043A\u0430\u0434\u0440\u044B?
-    \u041D\u0430 \u0431\u0430\u0448\u043D\u0435! \u0421\u043A\u043E\u0440\u0435\u0435
-    \u0437\u0430 \u043C\u043D\u043E\u0439! You know where the great panoramic shots
-    are? On the tower! Follow me!"
+  - You know where the great panoramic shots are? On the tower! Follow me!
   _textForFifthReport:
   - It's great that you can see what I see!
   - It's great that you're not with us!
