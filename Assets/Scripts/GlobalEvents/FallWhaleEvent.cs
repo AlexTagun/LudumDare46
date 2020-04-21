@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallWhaleEvent : GlobalEvent
+public class FallWhaleEvent : MonoBehaviour
 {
     [SerializeField] private Transform _pointToFallWhale;
     [SerializeField] private float _timeFalling;
@@ -21,7 +21,7 @@ public class FallWhaleEvent : GlobalEvent
             EventManager.OnSecondTick -= OnSecondTick;
         }
     }
-    protected override void Execute()
+    private void Execute()
     {
         gameObject.SetActive(true);
         FallingWhale();
