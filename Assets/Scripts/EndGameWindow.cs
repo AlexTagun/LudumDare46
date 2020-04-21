@@ -51,9 +51,9 @@ public class EndGameWindow : MonoBehaviour {
 
     private IEnumerator EndGameAnimation() {
         yield return _cameramanMovement.MoveCameraToEndGamePos();
-        _diedImage.DOFade(1, 1.5f);
+        // _diedImage.DOFade(1, 1.5f);
         yield return new WaitForSeconds(1.5f);
-         _diedImage.DOFade(0, 0.5f);
+         // _diedImage.DOFade(0, 0.5f);
          yield return new WaitForSeconds(0.5f);
         _container.SetActive(true);
     }
