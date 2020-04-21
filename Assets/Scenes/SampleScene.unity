@@ -1554,9 +1554,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0d51036d3c34181c825772355c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsToExecute: 3
+  _secondsToExecute: 215
   _pointToFallWhale: {fileID: 845443264}
-  _timeFalling: 10
+  _timeFalling: 30
   _speedRotation: 300
   _secondsToExecute: 3
 --- !u!1001 &745025880
