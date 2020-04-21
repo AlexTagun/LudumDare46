@@ -24,13 +24,15 @@ public class FallWhaleEvent : MonoBehaviour
     private void Execute()
     {
         gameObject.SetActive(true);
-        FallingWhale();
+        StartCoroutine(FallingWhale());
     }
 
-    private void FallingWhale ()
+    private IEnumerator FallingWhale ()
     {
         transform.DOMove(_pointToFallWhale.position, _timeFalling);
         transform.DORotate(Vector3.up * _speedRotation, _timeFalling);
+        yield return new WaitForSeconds(_timeFalling);
+        EventManager.HandleOnEndGame(EventManager.EndGameType.Win);
     }
 
 }
