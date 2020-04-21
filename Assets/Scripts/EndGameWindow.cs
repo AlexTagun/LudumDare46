@@ -72,20 +72,15 @@ public class EndGameWindow : MonoBehaviour {
         System.Action<GameReplay.Replay> theBeforeStartNextReplay = (GameReplay.Replay inReplay) => {
             Debug.Log("BeforeStartNextReplay");
         };
-        System.Action theLastReplayFinished = () => {
-            Debug.Log("LastReplayFinished");
-        };
 
         StartCoroutine(_playerReplay.playReplays(theReplays,
             theAfterStartNextReplayPreporation,
             theBeforeStartNextReplay,
-            (() => StartCoroutine(OnLastReplayFinished()))));
-    }
-
-    private IEnumerator OnLastReplayFinished() {
-        _playerReplay.gameObject.SetActive(false);
-        _restartButton.gameObject.SetActive(true);
-        yield return null;
+            () => {
+                _playButton.gameObject.SetActive(true);
+                _playerReplay.gameObject.SetActive(true);
+                _restartButton.gameObject.SetActive(true);
+            }));
     }
 
     private void OnCloseButtonClicked() {

@@ -31,16 +31,6 @@ namespace GameReplay
 
             EReplayPlayingStatus theReplayStatus = EReplayPlayingStatus.NoAction;
 
-            videoPlayer.prepareCompleted += (VideoPlayer unused1) => {
-                inBeforeStartNextReplay(inReplays[theCurrentReplayIndex]);
-                videoPlayer.Play();
-                theReplayStatus = EReplayPlayingStatus.Playing;
-            };
-
-            videoPlayer.loopPointReached += (VideoPlayer unused2) => {
-                theReplayStatus = EReplayPlayingStatus.FinishedCurrentReplay;
-            };
-
             System.Action theStartCurrentReplayPreporation = ()=>{
                 Replay theCurrentReplay = inReplays[theCurrentReplayIndex];
                 videoPlayer.url = theCurrentReplay.replayURL;
@@ -59,12 +49,22 @@ namespace GameReplay
                         theStartCurrentReplayPreporation();
                         yield return null;
                     }
+                } else if (EReplayPlayingStatus.NextReplayPreporation == theReplayStatus && videoPlayer.isPrepared) {
+                    inBeforeStartNextReplay(inReplays[theCurrentReplayIndex]);
+                    videoPlayer.Play();
+                    theReplayStatus = EReplayPlayingStatus.Playing;
+                } else if (EReplayPlayingStatus.Playing == theReplayStatus && !videoPlayer.isPlaying) {
+                    theReplayStatus = EReplayPlayingStatus.FinishedCurrentReplay;
                 } else {
                     yield return null;
                 }
             }
 
             inLastReplayFinished();
+
+            videoPlayer.Stop();
+
+            yield break;
         }
 
         private void Start() {
