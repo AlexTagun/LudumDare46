@@ -25,7 +25,11 @@ public class CameramanInGameController : MonoBehaviour {
 
     private void beforeGameEndActions(EventManager.EndGameType unused) {
         if (_replayRecorder.isRecording)
-            _replayRecorder.stopRecording((GameReplay.Replay inReplay) => { });
+        {
+            StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
+                _replays.Add(inReplay);
+            }));
+        }
     }
 
     private void Update()
