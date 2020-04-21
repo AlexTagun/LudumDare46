@@ -101,7 +101,12 @@ PrefabInstance:
     - target: {fileID: 4140221554676362778, guid: ca9d86ec381a2db4e80b67a0ba3b84bf,
         type: 3}
       propertyPath: m_Name
-      value: movingCar_4
+      value: movingCar_4 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491582226336706392, guid: ca9d86ec381a2db4e80b67a0ba3b84bf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5253363230071625100, guid: ca9d86ec381a2db4e80b67a0ba3b84bf,
         type: 3}
@@ -127,6 +132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132433486791206815, guid: ca9d86ec381a2db4e80b67a0ba3b84bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: car
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca9d86ec381a2db4e80b67a0ba3b84bf, type: 3}

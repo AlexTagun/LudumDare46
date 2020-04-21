@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3617054357241482223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9036555128885784222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3640aec8fa7f4349b224a90e7511e48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeToChangePoint: 15
-  pointsToMove: []
 --- !u!195 &1672281679166900154
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -36,6 +22,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 14
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3617054357241482223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9036555128885784222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3640aec8fa7f4349b224a90e7511e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToChangePoint: 15
+  pointsToMove: []
 --- !u!1001 &6835689009874342915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,7 +46,12 @@ PrefabInstance:
     - target: {fileID: 2573092422592674461, guid: 4db12c7fb16c9b7478fb310c2cf6c05e,
         type: 3}
       propertyPath: m_Name
-      value: movingCar_3
+      value: movingCar_3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286664824963229824, guid: 4db12c7fb16c9b7478fb310c2cf6c05e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5610530461686054933, guid: 4db12c7fb16c9b7478fb310c2cf6c05e,
         type: 3}
@@ -127,6 +132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901296915989705222, guid: 4db12c7fb16c9b7478fb310c2cf6c05e,
+        type: 3}
+      propertyPath: m_TagString
+      value: car
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4db12c7fb16c9b7478fb310c2cf6c05e, type: 3}
