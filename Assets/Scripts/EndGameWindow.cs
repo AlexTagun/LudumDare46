@@ -14,7 +14,7 @@ public class EndGameWindow : MonoBehaviour {
     [SerializeField] private Button _closeButton;
     [SerializeField] private GameReplay.ReplayPlayerObject _playerReplay = null;
     [SerializeField] private Image _back;
-    [SerializeField] private CanvasGroup _diedImage;
+    [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private GameObject[] _objectsToOff;
     [SerializeField] private Sprite _simpleBack;
     [SerializeField] private Sprite _whaleBack;
@@ -60,8 +60,10 @@ public class EndGameWindow : MonoBehaviour {
         // _diedImage.DOFade(1, 1.5f);
         yield return new WaitForSeconds(1.5f);
          // _diedImage.DOFade(0, 0.5f);
-         yield return new WaitForSeconds(0.5f);
         _container.SetActive(true);
+        _canvasGroup.DOFade(1, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        
     }
 
     private void OnRestartButtonClicked() {

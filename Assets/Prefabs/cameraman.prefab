@@ -734,6 +734,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8537074149765119423}
     m_Modifications:
+    - target: {fileID: 31228741136515494, guid: e69add03519c5124fb71907613cf364e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 31228741136515494, guid: e69add03519c5124fb71907613cf364e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 288
+      objectReference: {fileID: 0}
+    - target: {fileID: 31228741136515494, guid: e69add03519c5124fb71907613cf364e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 360.94952
+      objectReference: {fileID: 0}
     - target: {fileID: 101263514364379015, guid: e69add03519c5124fb71907613cf364e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -844,16 +859,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndGameWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -40.891
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1611.7683
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -32.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 804.59863
+      objectReference: {fileID: 0}
     - target: {fileID: 2918167320355081694, guid: e69add03519c5124fb71907613cf364e,
         type: 3}
       propertyPath: _cameramanMovement
       value: 
       objectReference: {fileID: 2602980868393172019}
-    - target: {fileID: 2918167320355081694, guid: e69add03519c5124fb71907613cf364e,
-        type: 3}
-      propertyPath: _back
-      value: 
-      objectReference: {fileID: 1014831639683145653}
     - target: {fileID: 2918167320355081694, guid: e69add03519c5124fb71907613cf364e,
         type: 3}
       propertyPath: _objectsToOff.Array.data[0]
