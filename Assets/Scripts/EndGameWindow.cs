@@ -18,6 +18,7 @@ public class EndGameWindow : MonoBehaviour {
     [SerializeField] private GameObject[] _objectsToOff;
     [SerializeField] private Sprite _simpleBack;
     [SerializeField] private Sprite _whaleBack;
+    [SerializeField] private Text _finalPointsText;
 
     private void Awake() {
         EventManager.OnEndGame += Show;
@@ -26,6 +27,7 @@ public class EndGameWindow : MonoBehaviour {
         _closeButton.onClick.AddListener(OnCloseButtonClicked);
         _restartButton.gameObject.SetActive(false);
         _container.SetActive(false);
+        _finalPointsText.enabled = false;
     }
 
     private void Show(EventManager.EndGameType endGameType) {
@@ -46,7 +48,11 @@ public class EndGameWindow : MonoBehaviour {
                 break;
         }
         StartCoroutine(EndGameAnimation());
-        
+
+        _finalPointsText.enabled = true;
+
+        _finalPointsText.text =
+                FindObjectOfType<PopularityManager>().popularityAmount.ToString();
     }
 
     private IEnumerator EndGameAnimation() {
