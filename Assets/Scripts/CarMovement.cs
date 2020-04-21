@@ -43,9 +43,10 @@ public class CarMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.tag == "Player") {
-            EventManager.HandleOnEndGame(EventManager.EndGameType.Die);
-        }
-    }
+    // private void OnTriggerEnter(Collision other) {
+    //     Debug.Log(other.gameObject.name);
+    //     if (other.gameObject.tag == "Player") {
+    //         EventManager.HandleOnEndGame(EventManager.EndGameType.Die);
+    //     }
+    // }
 }

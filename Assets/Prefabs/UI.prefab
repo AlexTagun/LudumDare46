@@ -725,32 +725,16 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f12770a1dd30cd94f82d63539952dd6b, type: 3}
   - {fileID: 21300000, guid: 6969fad686658c146847679b5b86ff8e, type: 3}
   _textsForTutorial:
-  - "\u041D\u0430\u043A\u043E\u043D\u0435\u0446-\u0442\u043E \u0434\u043E\u0435\u0445\u0430\u043B\u0438!
-    \u0410 \u0442\u044B \u0442\u0430\u043A \u0438 \u0441\u043F\u0430\u043B \u0432\u0441\u044E
-    \u0434\u043E\u0440\u043E\u0433\u0443, \u0434\u0430\u0436\u0435 \u0440\u0430\u0437\u0431\u0438\u0442\u0430\u044F
-    \u0434\u043E\u0440\u043E\u0433\u0430 \u0442\u0435\u0431\u044F \u043D\u0435 \u0440\u0430\u0437\u0431\u0443\u0434\u0438\u043B\u0430.
-    \u041D\u0443-\u043A\u0430, \u043F\u043E\u0434\u043E\u0439\u0434\u0438 \u043F\u043E\u0431\u043B\u0438\u0436\u0435."
-  - " \u041D\u0430\u0436\u043C\u0438\u0442\u0435 W \u0434\u043B\u044F \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F
-    \u0432\u043F\u0435\u0440\u0435\u0434 "
-  - "\u041F\u0440\u043E\u0432\u0435\u0440\u044C \u043A\u0430\u043C\u0435\u0440\u0443
-    \u0438 \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0438, \u043A\u0430\u043A \u044F
-    \u0432\u044B\u0433\u043B\u044F\u0436\u0443 \u0432 \u043A\u0430\u0434\u0440\u0435."
-  - "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u041F\u041A\u041C, \u0447\u0442\u043E\u0431\u044B
-    \u043D\u0430\u0447\u0430\u0442\u044C \u0441\u043D\u0438\u043C\u0430\u0442\u044C"
-  - "\u041D\u0443? \u041A\u0430\u043A \u044F? \u0417\u0440\u0438\u0442\u0435\u043B\u0438
-    \u0443\u0436\u0435 \u0441\u043C\u043E\u0442\u0440\u044F\u0442? \u041E\u0442\u043B\u0438\u0447\u043D\u043E!
-    \u0414\u0430\u0432\u0430\u0439 \u0441\u043D\u0438\u043C\u0435\u043C \u044D\u0442\u043E\u0442
-    \u0440\u0435\u043F\u043E\u0440\u0442\u0430\u0436 \u0438 \u0431\u0443\u0434\u0435\u043C
-    \u0432\u044B\u0431\u0438\u0440\u0430\u0442\u044C\u0441\u044F \u0438\u0437 \u044D\u0442\u043E\u0439
-    \u0434\u044B\u0440\u044B."
-  - "\u0412\u044B\u043A\u043B\u044E\u0447\u0430\u0439 \u043A\u0430\u043C\u0435\u0440\u0443
-    \u0438 \u043F\u043E\u0448\u043B\u0438 \u0437\u0430 \u043C\u043D\u043E\u0439."
-  - " \u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u041F\u041A\u041C \u0435\u0449\u0435
-    \u0440\u0430\u0437, \u0447\u0442\u043E\u0431\u044B \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u044C
-    \u0441\u043D\u0438\u043C\u0430\u0442\u044C. "
-  - "\u041F\u043E\u0441\u043B\u0435\u0434\u0443\u0439\u0442\u0435 \u0437\u0430 \u041C\u044D\u0439
-    \u0438 \u043B\u043E\u0432\u0438\u0442\u0435 \u043E\u0442\u043B\u0438\u0447\u043D\u044B\u0435
-    \u043A\u0430\u0434\u0440\u044B!"
+  - Finally arrived! And you were asleep all the way, even the broken road didn't
+    Wake you up. Come on, come closer.
+  - Press W to move forward
+  - Check the camera and see how I look in the frame.
+  - Click the RIGHT MOUSE BUTTON to start recording
+  - Well? How am I? The audience is already watching? Great! Let's get this story
+    and get out of this hole.
+  - Turn off the camera and follow me.
+  - Press the RIGHT MOUSE BUTTON again to stop shooting.
+  - Follow May and catch great shots!
 --- !u!114 &2265507780943590473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,8 +752,7 @@ MonoBehaviour:
   _textPlaceUI: {fileID: 3967280196999175135}
   _textForFirstReport:
   - I'm May and we are broadcasting live from the city of Roxintan, where the local
-    prophet predicts the end of the world today!For viewers of A-Live TV channel,
-    such statements are already commonplace...
+    prophet predicts the end of the world today!
   - For viewers of A-Live TV channel, such statements are already commonplace...
   - I wonder what new nonsense the prophet will come up with this time...
   - Hey! Look at this! Is that a ROCKET? Take it off!
@@ -795,11 +778,7 @@ MonoBehaviour:
   - You won't believe it! An alien ship has just landed on the field!
   - Oh, no! It seems that the landing was unsuccessful! What a pity, apparently,
     the first contact with an alien mind is delayed.
-  - "\u0417\u043D\u0430\u0435\u0448\u044C \u0433\u0434\u0435 \u043E\u0442\u043B\u0438\u0447\u043D\u044B\u0435
-    \u043F\u0430\u043D\u043E\u0440\u0430\u043C\u043D\u044B\u0435 \u043A\u0430\u0434\u0440\u044B?
-    \u041D\u0430 \u0431\u0430\u0448\u043D\u0435! \u0421\u043A\u043E\u0440\u0435\u0435
-    \u0437\u0430 \u043C\u043D\u043E\u0439! You know where the great panoramic shots
-    are? On the tower! Follow me!"
+  - You know where the great panoramic shots are? On the tower! Follow me!
   _textForFifthReport:
   - It's great that you can see what I see!
   - It's great that you're not with us!

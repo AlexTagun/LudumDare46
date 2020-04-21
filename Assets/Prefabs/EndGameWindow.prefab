@@ -201,7 +201,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -1342,42 +1342,42 @@ PrefabInstance:
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.099975586
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -3.5672607
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -14.127808
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.112125
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.1397778
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.85818756
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.84914815
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4460175143681743019, guid: 8e5c27bd16909e341b382c33b47f68f4,
         type: 3}

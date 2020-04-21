@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _secondsToExecute: 3
+  _startPositionOnSky: {fileID: 0}
   _pointToFallUFO: {fileID: 0}
   _timeFalling: 6
   _speedRotation: 500
   _cercentreMoveingCircle: {fileID: 0}
   _timeCircularMotion: 10
+  _speed: 3
 --- !u!1001 &6938765312471630581
 PrefabInstance:
   m_ObjectHideFlags: 0

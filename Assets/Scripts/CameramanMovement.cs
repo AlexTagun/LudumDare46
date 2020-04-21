@@ -94,4 +94,11 @@ public class CameramanMovement : MonoBehaviour {
         _uiBlack.DOFade(1, 1f);
         yield return new WaitForSeconds(1f);
     }
+    
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.tag == "car") {
+            EventManager.HandleOnEndGame(EventManager.EndGameType.Die);
+        }
+    }
 }
