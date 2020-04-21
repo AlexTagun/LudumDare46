@@ -619,11 +619,6 @@ PrefabInstance:
       propertyPath: _uISubtitleText
       value: 
       objectReference: {fileID: 137935915}
-    - target: {fileID: 4822501116449458399, guid: 32fa08c024544f34db8848a6c63e3cfe,
-        type: 3}
-      propertyPath: _secondsToExecute
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 8734477115280035222, guid: 32fa08c024544f34db8848a6c63e3cfe,
         type: 3}
       propertyPath: m_Name
@@ -1554,11 +1549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 034f0d51036d3c34181c825772355c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _secondsToExecute: 215
   _pointToFallWhale: {fileID: 845443264}
   _timeFalling: 30
   _speedRotation: 300
-  _secondsToExecute: 3
+  _secondsToExecute: 220
 --- !u!1001 &745025880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3328,11 +3322,6 @@ PrefabInstance:
       propertyPath: _uISubtitleText
       value: 
       objectReference: {fileID: 137935915}
-    - target: {fileID: 2108192543700435986, guid: 51d77a249cc15114ab5cb4fb41d5069a,
-        type: 3}
-      propertyPath: _secondsToExecute
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4452552846510685514, guid: 51d77a249cc15114ab5cb4fb41d5069a,
         type: 3}
       propertyPath: m_Name
@@ -4354,11 +4343,6 @@ PrefabInstance:
       propertyPath: _reporterMovement
       value: 
       objectReference: {fileID: 1432330361}
-    - target: {fileID: 90964948786782618, guid: d382bdfea31c43b49bb4771f66ecb32c,
-        type: 3}
-      propertyPath: _secondsToExecute
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 90964948786782619, guid: d382bdfea31c43b49bb4771f66ecb32c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4769,11 +4753,6 @@ PrefabInstance:
       propertyPath: _reporterMovement
       value: 
       objectReference: {fileID: 1432330361}
-    - target: {fileID: 8865137316791045301, guid: d30782b65e5619a44886527df7f32ad4,
-        type: 3}
-      propertyPath: _secondsToExecute
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d30782b65e5619a44886527df7f32ad4, type: 3}
 --- !u!4 &1687634912 stripped
@@ -6020,6 +5999,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1465427353853304628, guid: ee106ac2ee172dd42abe8394de40c495,
+        type: 3}
+      propertyPath: _secondsToExecute
+      value: 113
+      objectReference: {fileID: 0}
     - target: {fileID: 5701118947007240622, guid: ee106ac2ee172dd42abe8394de40c495,
         type: 3}
       propertyPath: m_LocalPosition.x
