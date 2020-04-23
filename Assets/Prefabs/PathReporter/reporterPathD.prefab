@@ -102,8 +102,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 75, y: -1, z: 97.4}
-  - {x: 90, y: -1, z: 107}
+  - {x: 91.8, y: -1, z: 107.1}
+  - {x: 90, y: -1, z: 105.3}
   - {x: 95, y: -1, z: 96}
   - {x: 96, y: -1, z: 84}
   - {x: 97, y: -1, z: 74}
