@@ -1,37 +1,43 @@
 ﻿using UnityEngine;
 using FFmpegOut;
-using UnityEngine.Rendering;
+using System.Collections.Generic;
 
 namespace GameReplay
 {
     [AddComponentMenu("GameReplay/ReplayRecorder")]
     public sealed class ReplayRecorder : MonoBehaviour
     {
-        public bool isRecording => (null != _recordingState);
-        public bool isPossibleToStartRecording => !isRecording;
+        public void startNewRecording() {
+            createFolderToSaveReplaysIfNo();
+            _recordingStates.Add(createRecordingState());
 
-        public void startRecording() {
-            if (isRecording)
-                throw (new System.Exception("Start recording during recording is performing"));
+            ++_currentCaptureIndexForCaptureFileName;
+        }
 
+        private void createFolderToSaveReplaysIfNo() {
             System.IO.Directory.CreateDirectory(folderToSaveCaptures);
-            _recordingState = new RecordingState(replayRecordingCamera, pathToSaveCurrentCapture, _frameRate, _preset);
         }
 
-        public System.Collections.IEnumerator stopRecording(System.Action<Replay> resultCallback) {
-            if (!isRecording)
-                throw (new System.Exception("Stop recording on recording is not performed"));
-
-            yield return _recordingState.closeRecordingSession();
-
-            Debug.Log("Saved replay capture to: " + pathToSaveCurrentCapture);
-
-            Replay newReplay = new Replay(pathToSaveCurrentCapture);
-            _recordingState = null;
-            ++_currentCaptureIndex;
-
-            resultCallback(newReplay);
+        private RecordingState createRecordingState() {
+            return new RecordingState(replayRecordingCamera, pathToSaveCurrentCapture, _frameRate, _preset);
         }
+
+        public System.Collections.IEnumerator stopLastRecording(System.Action<Replay> resultCallback) {
+            int theCount = _recordingStates.Count;
+            int theIndexToStop = theCount - 1;
+            if (0 == theCount)
+                throw(new System.Exception("Incorrect stopping of recording"));
+            RecordingState theStateToStop = _recordingStates[theIndexToStop];
+            if (null == theStateToStop || theStateToStop.isClosing)
+                throw (new System.Exception("Incorrect stopping of recording"));
+
+            yield return theStateToStop.closeRecordingSession(resultCallback);
+            
+            _recordingStates.RemoveAt(theIndexToStop);
+        }
+
+        public bool isRecording =>
+                _recordingStates.Count > 0 && !_recordingStates[_recordingStates.Count - 1].isClosing;
 
         private class RecordingState {
             public RecordingState(Camera inCamera, string inPathToSaveResult, float inFrameRate, FFmpegPreset inPreset) {
@@ -42,27 +48,62 @@ namespace GameReplay
                 int width = Mathf.Max(8, inCamera.pixelWidth) / 2 * 2;
                 int height = Mathf.Max(8, inCamera.pixelHeight) / 2 * 2;
 
-                session = FFmpegSession.CreateWithOutputPath(
-                    inPathToSaveResult,
-                    width,
-                    height,
-                    inFrameRate, inPreset
-                );
+                frameRate = inFrameRate;
+
+                session = FFmpegSession.CreateWithOutputPath(inPathToSaveResult, width, height, inFrameRate, inPreset);
 
                 startTime = Time.time;
                 frameCount = 0;
                 frameDropCount = 0;
 
                 _camera = inCamera;
+
+                _pathToSaveResult = inPathToSaveResult;
             }
 
-            public System.Collections.IEnumerator closeRecordingSession() {
+            public void update() {
+                float frameTime = startTime + (frameCount - 0.5f) / frameRate;
+                float gap = Time.time - frameTime;
+                float delta = 1f / frameRate;
+
+                if (gap < 0) {
+                    session.PushFrame(null);
+                } else if (gap < delta) {
+                    session.PushFrame(_camera.targetTexture);
+                    frameCount++;
+                } else if (gap < delta * 2) {
+                    session.PushFrame(_camera.targetTexture);
+                    session.PushFrame(_camera.targetTexture);
+                    frameCount += 2;
+                } else {
+                    if (++frameDropCount == 10) {
+                        Debug.LogWarning(
+                            "Significant frame droppping was detected. This may introduce " +
+                            "time instability into output video. Decreasing the recording " +
+                            "frame rate is recommended."
+                        );
+                    }
+
+                    session.PushFrame(_camera.targetTexture);
+                    frameCount += Mathf.FloorToInt(gap * frameRate);
+                }
+            }
+
+            public System.Collections.IEnumerator closeRecordingSession(System.Action<Replay> inResultCallback) {
+                if (_closing)
+                    yield break;
+                _closing = true;
+
                 yield return session.AsyncClose();
                 session.Dispose();
                 _camera.targetTexture = null;
                 Destroy(tempRT);
                 Destroy(blitter);
+
+                inResultCallback(new Replay(_pathToSaveResult));
             }
+
+            public bool isClosing => _closing;
 
             static private RenderTexture createCaptureTexture(Camera inCamera) {
                 int width = Mathf.Max(8, inCamera.pixelWidth) / 2 * 2;
@@ -74,6 +115,7 @@ namespace GameReplay
                 return theResult;
             }
 
+            //Fields
             public FFmpegSession session = null;
             public RenderTexture tempRT = null;
             public GameObject blitter = null;
@@ -81,61 +123,38 @@ namespace GameReplay
             public int frameCount = 0;
             public float startTime = 0;
             public int frameDropCount = 0;
+            public float frameRate = 1;
+            public string _pathToSaveResult = null;
 
             private Camera _camera = null;
+            private bool _closing = false;
         }
 
         private void Update() {
-            if (null == _recordingState)
-                return;
-
-            float frameTime = _recordingState.startTime + (_recordingState.frameCount - 0.5f) / _frameRate;
-            float gap = Time.time - frameTime;
-            float delta = 1f / _frameRate;
-
-            if (gap < 0) {
-                _recordingState.session.PushFrame(null);
-            } else if (gap < delta) {
-                _recordingState.session.PushFrame(replayRecordingCamera.targetTexture);
-                _recordingState.frameCount++;
-            } else if (gap < delta * 2) {
-                _recordingState.session.PushFrame(replayRecordingCamera.targetTexture);
-                _recordingState.session.PushFrame(replayRecordingCamera.targetTexture);
-                _recordingState.frameCount += 2;
-            } else {
-                if (++_recordingState.frameDropCount == 10) {
-                    Debug.LogWarning(
-                        "Significant frame droppping was detected. This may introduce " +
-                        "time instability into output video. Decreasing the recording " +
-                        "frame rate is recommended."
-                    );
-                }
-
-                _recordingState.session.PushFrame(replayRecordingCamera.targetTexture);
-                _recordingState.frameCount += Mathf.FloorToInt(gap * _frameRate);
-            }
+            foreach (RecordingState theRecordingState in _recordingStates)
+                theRecordingState.update();
         }
 
         private void OnDisable() {
-            if (isRecording) {
-                _recordingState.closeRecordingSession();
-            }
+            foreach (RecordingState theRecordingState in _recordingStates)
+                theRecordingState.closeRecordingSession((Replay unused)=>{});
         }
 
         private Camera replayRecordingCamera { get { return _replayRecordingCamera; } }
 
-        private static string folderToSaveCaptures { get { return Application.persistentDataPath + "/" + "GameReplay"; } }
-        private string currentCaptureFileName { get { return "replayCapture" + _currentCaptureIndex; } }
-        private string pathToSaveCurrentCapture { get { return folderToSaveCaptures + "/" + currentCaptureFileName + _preset.GetSuffix(); } }
+        private static string folderToSaveCaptures => Application.persistentDataPath + "/" + "GameReplay"; 
+        private string pathToSaveCurrentCapture =>
+                folderToSaveCaptures + "/" + "replayCapture" + _currentCaptureIndexForCaptureFileName + _preset.GetSuffix();
 
         //Fields
-        private RecordingState _recordingState = null;
-        private int _currentCaptureIndex = 0;
+        private List<RecordingState> _recordingStates = new List<RecordingState>();
+        private int _currentCaptureIndexForCaptureFileName = 0;
 
-        [SerializeField] Camera _replayRecordingCamera = null;
-        [SerializeField] FFmpegPreset _preset; public FFmpegPreset preset { get { return _preset; } set { _preset = value; } }
-        [SerializeField] float _frameRate = 60; public float frameRate { get { return _frameRate; } set { _frameRate = value; } }
+        [SerializeField] private Camera _replayRecordingCamera = null;
+        [SerializeField] private FFmpegPreset _preset;
+        [SerializeField] private float _frameRate = 60;
 
+        //NB: This code was in original implementation, maybe it will be needed in future
         //IEnumerator Start() { for (var eof = new WaitForEndOfFrame(); ;) { yield return eof; _session?.CompletePushFrames(); } }
     }
 }

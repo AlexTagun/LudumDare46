@@ -24,9 +24,8 @@ public class CameramanInGameController : MonoBehaviour {
     }
 
     private void beforeGameEndActions(EventManager.EndGameType unused) {
-        if (_replayRecorder.isRecording)
-        {
-            StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
+        if (_replayRecorder.isRecording) {
+            StartCoroutine(_replayRecorder.stopLastRecording((GameReplay.Replay inReplay) => {
                 _replays.Add(inReplay);
             }));
         }
@@ -60,29 +59,41 @@ public class CameramanInGameController : MonoBehaviour {
         //velocity.y -= 9.8f * Time.deltaTime;
         _cameramanMovement.Move(velocity);
 
-        
+        if (Input.GetMouseButtonDown(1) && CanShoot) {
+            switch(_shootingState) {
+                case EShootingState.NotShooting:
+                    _shootingState = EShootingState.ShootingStarting;
+                    StartCoroutine(_cameramanMovement.LookAtCamera(() => {
+                        _popularityCollector.setCollectingEnabled(true);
+                        _replayRecorder.startNewRecording();
+                        _cameraEnergyManager.startSpendingEnergy();
 
-        if (Input.GetMouseButtonDown(1) && CanShoot && isPossibleToChangeCameraState) {
-            if (!_replayRecorder.isRecording) {
-                
-                StartCoroutine(_cameramanMovement.LookAtCamera(() => {
-                    _popularityCollector.setCollectingEnabled(true);
-                    _replayRecorder.startRecording();
-                    _cameraEnergyManager.startSpendingEnergy();
-                }));
+                        _shootingState = EShootingState.Shooting;
+                    }));
+                    break;
 
-            }  else {
-                StartCoroutine(_replayRecorder.stopRecording((GameReplay.Replay inReplay) => {
-                    _replays.Add(inReplay);
-                    isPossibleToChangeCameraState = true;
-                    _popularityCollector.setCollectingEnabled(false);
+                case EShootingState.ShootingStarting:
+                    break;
+
+                case EShootingState.Shooting:
+                    _shootingState = EShootingState.ShootingEnding;
+                    StartCoroutine(_replayRecorder.stopLastRecording((GameReplay.Replay inReplay) => {
+                        _replays.Add(inReplay);
+
+                        inReplay.printReplayInfo();
+                    }));
                     _cameraEnergyManager.stopSpendingEnergy();
+                    _popularityCollector.setCollectingEnabled(false);
+                    StartCoroutine(_cameramanMovement.DontLookAtCamera(()=>{
+                        _shootingState = EShootingState.NotShooting;
+                    }));
+                    break;
 
-                    StartCoroutine(_cameramanMovement.DontLookAtCamera());
-                }));
+                case EShootingState.ShootingEnding:
+                    break;
             }
         }
-        
+
         //TODO: DELETE
 
         if (Input.GetKeyDown(KeyCode.F)) {
@@ -92,7 +103,14 @@ public class CameramanInGameController : MonoBehaviour {
         if (_cameraEnergyManager.energyRatio <= 0f)
             EventManager.HandleOnEndGame(EventManager.EndGameType.LowBattery);
     }
-    private bool isPossibleToChangeCameraState = true;
+
+    enum EShootingState {
+        NotShooting,
+        ShootingStarting,
+        Shooting,
+        ShootingEnding
+    }
+    EShootingState _shootingState = EShootingState.NotShooting;
 
     private IEnumerator Jump() {
         var k = 0.01f;

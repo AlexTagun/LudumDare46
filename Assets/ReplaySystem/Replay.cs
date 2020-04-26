@@ -7,6 +7,10 @@
             new System.IO.FileInfo(replayURL).Delete();
         }
 
+        public void printReplayInfo() {
+            UnityEngine.Debug.Log("Replay saved at path: " + replayURL);
+        }
+
         internal Replay(string inReplayURL) {
             replayURL = inReplayURL;
         }
