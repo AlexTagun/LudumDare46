@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8009693938980679385}
-  - component: {fileID: 8115273782867755542}
-  - component: {fileID: 3408153895332757158}
+  - component: {fileID: 1289030472968587635}
   m_Layer: 0
   m_Name: car_12
   m_TagString: Untagged
@@ -35,21 +34,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8115273782867755542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906994567059031993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1d927a0270750a4cafac7014510d936, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uiAttachPoint: {fileID: 8822858709918976134}
-  _popularityGainingLogic: {fileID: 3408153895332757158}
---- !u!114 &3408153895332757158
+--- !u!114 &1289030472968587635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf2215890b6cc448b1af6e4261009d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiAttachPoint: {fileID: 8822858709918976134}
   _timeBetweenGainings: 1
   _popularityPerGaining: 50
 --- !u!65 &427858265612342415

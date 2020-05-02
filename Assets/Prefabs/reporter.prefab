@@ -2604,11 +2604,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCGainingPoints
       objectReference: {fileID: 0}
-    - target: {fileID: 3928121367004847873, guid: a946d6769b87c734ca7249cdf400298b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.939
-      objectReference: {fileID: 0}
     - target: {fileID: 4612649370728009917, guid: a946d6769b87c734ca7249cdf400298b,
         type: 3}
       propertyPath: _timeBetweenGainings

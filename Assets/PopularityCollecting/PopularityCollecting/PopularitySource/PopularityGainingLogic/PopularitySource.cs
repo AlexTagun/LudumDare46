@@ -5,12 +5,15 @@ public class PopularitySource : MonoBehaviour
     public PopularitySourceViewablePointObject[] viewablePoints => _viewablePoints;
     public WorldObjectAttachPointObject uiAttachPoint => _uiAttachPoint;
 
-    public PopularityGainingLogic popularityGainingLogic => _popularityGainingLogic;
+    protected void Start() {
+        _popularityManagerCache = Object.FindObjectOfType<PopularityManager>();
 
-    private void Awake() {
-        _viewablePoints = GetComponentsInChildren<PopularitySourceViewablePointObject>();
-
+        collectViewablePoints();
         registerInCollectors();
+    }
+
+    private void collectViewablePoints() {
+        _viewablePoints = GetComponentsInChildren<PopularitySourceViewablePointObject>();
     }
 
     private void registerInCollectors() {
@@ -19,14 +22,15 @@ public class PopularitySource : MonoBehaviour
             theCollector.registerPopularitySource(this);
     }
 
-    internal void startGaining() { _popularityGainingLogic?.startGaining(); }
-    internal void tickPopularityGaining(float inDeltaTime) { _popularityGainingLogic?.tickPopularityGaining(inDeltaTime); }
-    internal void stopGaining() { _popularityGainingLogic?.stopGaining(); }
+    protected PopularityManager popularityManager => _popularityManagerCache;
+
+    internal virtual void startGaining() { }
+    internal virtual void tickPopularityGaining(float inDeltaTime) { }
+    internal virtual void stopGaining() { }
 
     //Fields
-
     [SerializeField] private WorldObjectAttachPointObject _uiAttachPoint = null;
-    [SerializeField] private PopularityGainingLogic _popularityGainingLogic = null;
 
+    private PopularityManager _popularityManagerCache = null;
     private PopularitySourceViewablePointObject[] _viewablePoints = null;
 }

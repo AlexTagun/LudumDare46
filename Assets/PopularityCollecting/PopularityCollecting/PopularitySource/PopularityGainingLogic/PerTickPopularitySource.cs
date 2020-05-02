@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-public class PerTickPopularityGainingLogic : PopularityGainingLogic
+public class PerTickPopularitySource : PopularitySource
 {
     //For UI{
     public System.Action<int> UI_onGainedPoints = null;
+    public System.Action UI_onStoppedGainingPoints = null;
     //}
 
     internal override void tickPopularityGaining(float inDeltaTime) {
@@ -16,6 +17,8 @@ public class PerTickPopularityGainingLogic : PopularityGainingLogic
 
     internal override void stopGaining() {
         _tickingTime = 0f;
+
+        notifyPopularityStoppedGaining();
     }
 
     private void gainPopularity() {
@@ -26,6 +29,10 @@ public class PerTickPopularityGainingLogic : PopularityGainingLogic
 
     private void notifyPopularityGained(int inPopularityGained) {
         UI_onGainedPoints?.Invoke(inPopularityGained);
+    }
+
+    private void notifyPopularityStoppedGaining() {
+        UI_onStoppedGainingPoints?.Invoke();
     }
 
     // Fields

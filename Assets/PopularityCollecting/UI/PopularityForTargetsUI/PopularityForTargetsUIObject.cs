@@ -14,8 +14,7 @@ public class PopularityForTargetsUIObject : MonoBehaviour
                 ref _previousCollectedPopularitySourcesArray, ref _actualPreviousCollectedPopularitySourcesArrayNum,
                 theCurrentPopularitySources, theActualCollectedPopularitySourcesNum,
                 (PopularitySource inAddedSource) =>{
-                    var theNewUI = Instantiate(_popularityForTargetUIPrefab).GetComponent<PopularityForTargetUIObject>();
-                    theNewUI.init(inAddedSource);
+                    var theNewUI = createPopularitySourceUI(inAddedSource);
                     _worldObjectsAttachedUIManger.attach(theNewUI.gameObject, inAddedSource.uiAttachPoint);
                 },
                 (PopularitySource inRemovedSource) => {
@@ -23,10 +22,20 @@ public class PopularityForTargetsUIObject : MonoBehaviour
                 });
     }
 
-    //Fields
+    MonoBehaviour createPopularitySourceUI(PopularitySource inPopularitySource) {
+        switch (inPopularitySource) {
+            case PerTickPopularitySource thePerTickPopularitySource:
+                PerTickPopularitySourceUIObject thePopularitySourceUI = Instantiate(_perTickPopularitySourceUIPrefab);
+                thePopularitySourceUI.init(GetComponent<RectTransform>(), thePerTickPopularitySource);
+                return thePopularitySourceUI;
+            default:
+                throw(new System.Exception("Incorrect logic type"));
+        }
+    }
 
+    //Field
     [SerializeField] private WorldObjectsAttachedUIManger _worldObjectsAttachedUIManger = null;
-    [SerializeField] private PopularityForTargetUIObject _popularityForTargetUIPrefab = null;
+    [SerializeField] private PerTickPopularitySourceUIObject _perTickPopularitySourceUIPrefab = null;
 
     private PopularityCollector _popularityCollector = null;
     private PopularitySource[] _previousCollectedPopularitySourcesArray = new PopularitySource[4];

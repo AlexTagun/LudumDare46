@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5834262408891034652}
-  - component: {fileID: 5329817104254375525}
   - component: {fileID: 4612649370728009917}
   m_Layer: 0
   m_Name: NPCGainingPoints
@@ -34,20 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5329817104254375525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1443760485254981514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1d927a0270750a4cafac7014510d936, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uiAttachPoint: {fileID: 7015400523994309081}
-  _popularityGainingLogic: {fileID: 4612649370728009917}
 --- !u!114 &4612649370728009917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf2215890b6cc448b1af6e4261009d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _uiAttachPoint: {fileID: 7015400523994309081}
   _timeBetweenGainings: 2
   _popularityPerGaining: 5
 --- !u!1 &4804470614613135813
@@ -108,12 +94,12 @@ PrefabInstance:
     - target: {fileID: 179210399165483315, guid: 934cc468c63751345ab05c0615a6bb2d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0630054
+      value: 0.618
       objectReference: {fileID: 0}
     - target: {fileID: 179210399165483315, guid: 934cc468c63751345ab05c0615a6bb2d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.887
+      value: -2.622
       objectReference: {fileID: 0}
     - target: {fileID: 179210399165483315, guid: 934cc468c63751345ab05c0615a6bb2d,
         type: 3}
