@@ -61,20 +61,21 @@ public class SoundSequencePlayer : MonoBehaviour
 
     [System.Serializable]
     struct SequenceElement {
+#       pragma warning disable 0649// Prevent warnings for default initialization of the struct
         public float timeSpanToPlay;
         public AudioClip clipToPlay;
+#       pragma warning restore 0649
     }
 
     //Fields
-    [SerializeField] private SequenceElement[] _sequenceElements;
+    [SerializeField] private SequenceElement[] _sequenceElements = null;
     [SerializeField] private float _timeSpanToChangeElements = 1f;
 
     [SerializeField] private bool _loopSounds = true;
-    [SerializeField] private bool _loopLastSound = true;
     [SerializeField] private float _volume = 1f;
 
-    [SerializeField] private AudioSource _audioSourceA;
-    [SerializeField] private AudioSource _audioSourceB;
+    [SerializeField] private AudioSource _audioSourceA = null;
+    [SerializeField] private AudioSource _audioSourceB = null;
 
     private float _soundsChangingRemainingTime = 0f;
     private bool _audioSourceAIsMain = true;

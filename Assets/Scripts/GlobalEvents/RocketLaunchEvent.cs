@@ -5,15 +5,14 @@ using DG.Tweening;
 
 public class RocketLaunchEvent : GlobalEvent {
 
-    [SerializeField] private float _timeRiseFromUnderground;
-    [SerializeField] private float _positionOnGround;
-    [SerializeField] private float _preparationTime;
-    [SerializeField] private float _duractionFly;
-    [SerializeField] private float _endPositionY;
-    [SerializeField] private float _speedRotation;
+    [SerializeField] private float _timeRiseFromUnderground = 0f;
+    [SerializeField] private float _positionOnGround = 0f;
+    [SerializeField] private float _preparationTime = 0f;
+    [SerializeField] private float _duractionFly = 0f;
+    [SerializeField] private float _endPositionY = 0f;
+    [SerializeField] private float _speedRotation = 0f;
 
-    protected override void Execute()
-    {
+    protected override void Execute() {
         StartCoroutine(LaunchRocket());
     }
 

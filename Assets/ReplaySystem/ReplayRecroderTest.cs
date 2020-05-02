@@ -33,6 +33,5 @@ public class ReplayRecroderTest : MonoBehaviour
 
     bool _isPlayed = false;
 
-    [SerializeField] private GameReplay.ReplayRecorder _recorder = null;
     [SerializeField] private GameReplay.ReplayPlayerObject _player = null;
 }

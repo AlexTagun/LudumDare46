@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpeakReporterEvent : MonoBehaviour {
-    [SerializeField] private int _secondsToExecute;
-    [SerializeField] private UISubtitleText _uISubtitleText;
-    [SerializeField] private int _stageNumber;
+    [SerializeField] private int _secondsToExecute = 0;
+    [SerializeField] private UISubtitleText _uISubtitleText = null;
+    [SerializeField] private int _stageNumber = 0;
     
     private void Start() {
         EventManager.OnSecondTick += OnSecondTick;
     }
 
     private void OnSecondTick(int second) {
-        // Debug.Log(second + " : " + gameObject.name);
         if (second == _secondsToExecute) {
             Execute();
             EventManager.OnSecondTick -= OnSecondTick;
@@ -20,7 +17,6 @@ public class SpeakReporterEvent : MonoBehaviour {
     }
 
     private void Execute() {
-        // anim Report
         StartCoroutine(_uISubtitleText.ShowSubtitleText(_stageNumber));
         EventManager.HandleOnReporterAnim(EventManager.ReporterAnim.Talk);
     }

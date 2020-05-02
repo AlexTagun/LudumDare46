@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameramanInGameController : MonoBehaviour {
-    [SerializeField] private CameramanMovement _cameramanMovement;
-    [SerializeField] private CharacterController _characterController;
-    [SerializeField] private GameReplay.ReplayRecorder _replayRecorder;
-    [SerializeField] private PopularityCollector _popularityCollector;
-    [SerializeField] private CameraEnergyManager _cameraEnergyManager;
+    [SerializeField] private CameramanMovement _cameramanMovement = null;
+    [SerializeField] private CharacterController _characterController = null;
+    [SerializeField] private GameReplay.ReplayRecorder _replayRecorder = null;
+    [SerializeField] private PopularityCollector _popularityCollector = null;
+    [SerializeField] private CameraEnergyManager _cameraEnergyManager = null;
 
     public bool CanMove = false;
     public bool CanShoot = false;

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class FallWhaleEvent : MonoBehaviour
 {
-    [SerializeField] private Transform _pointToFallWhale;
-    [SerializeField] private float _timeFalling;
-    [SerializeField] private float _speedRotation;
-    [SerializeField] private int _secondsToExecute;
+    [SerializeField] private Transform _pointToFallWhale = null;
+    [SerializeField] private float _timeFalling = 0f;
+    [SerializeField] private float _speedRotation = 0f;
+    [SerializeField] private int _secondsToExecute = 0;
 
     private void Start() {
         EventManager.OnSecondTick += OnSecondTick;

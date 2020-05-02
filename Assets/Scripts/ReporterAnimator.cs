@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ReporterAnimator : MonoBehaviour {
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator = null;
 
-    private Transform _player;
+    private Transform _player = null;
     private bool _isNeedToLookAtPlayer = false;
 
     private void Awake() {
@@ -40,15 +40,7 @@ public class ReporterAnimator : MonoBehaviour {
         transform.LookAt(_player);
     }
 
-    public void Run() {
-        _animator.Play("Reporter_run_cure");
-    }
-
-    public void Talk() {
-        _animator.Play("Reporter_talking_cure");
-    }
-
-    public void Jump() {
-        _animator.Play("Reporter_talking_cure");
-    }
+    public void Run() { _animator.Play("Reporter_run_cure"); }
+    public void Talk() { _animator.Play("Reporter_talking_cure"); }
+    public void Jump() { _animator.Play("Reporter_talking_cure"); }
 }

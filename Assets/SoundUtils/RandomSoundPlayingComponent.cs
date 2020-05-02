@@ -45,7 +45,7 @@ public class RandomSoundPlayingComponent : MonoBehaviour
     private bool isPlaying => _audioSource.isPlaying;
 
     //Fields
-    [SerializeField] AudioClip[] _soundVariants;
+    [SerializeField] AudioClip[] _soundVariants = null;
     [SerializeField] float _minTimeBetweenSounds = 4f;
     [SerializeField] float _maxTimeBetweenSounds = 10f;
     [SerializeField] bool _selectVariantOnce = true;

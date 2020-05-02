@@ -6,32 +6,32 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CameramanMovement : MonoBehaviour {
-    [SerializeField] private Camera _camera;
-    [SerializeField] private float _speed;
-    [SerializeField] private float _speedRotation;
-    [SerializeField] private float _jumpSpeed;
-    [SerializeField] private int _jumpFrameTime;
-    [SerializeField] private CharacterController _characterController;
-    [SerializeField] private Transform _cameraStartPos;
-    [SerializeField] private Transform _cameraEndPos;
-    [SerializeField] private Transform _cameraEndGamePos;
-    [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private Image _uiBlack;
-    [SerializeField] private GameObject _cameraEffectUI;
+    [SerializeField] private Camera _camera = null;
+    [SerializeField] private float _speed = 0f;
+    [SerializeField] private float _speedRotation = 0f;
+    [SerializeField] private float _jumpSpeed = 0f;
+    [SerializeField] private int _jumpFrameTime = 0;
+    [SerializeField] private CharacterController _characterController = null;
+    [SerializeField] private Transform _cameraStartPos = null;
+    [SerializeField] private Transform _cameraEndPos = null;
+    [SerializeField] private Transform _cameraEndGamePos = null;
+    [SerializeField] private Transform _cameraTransform = null;
+    [SerializeField] private Image _uiBlack = null;
+    [SerializeField] private GameObject _cameraEffectUI = null;
 
     [Header("Shake Camera")]
-    [SerializeField] private float _duractionShake;
+    [SerializeField] private float _duractionShake = 0f;
 
 
 
     public float JumpSpeed => _jumpSpeed;
     public int JumpFrameTime => _jumpFrameTime;
     // вращение камеры
-    private float mouseDeltaX;
-    private float mouseDeltaY;
-    private Quaternion startRotation;
-    private Quaternion verticalRotation;
-    private Quaternion horizontalRotarion;
+    private float mouseDeltaX = 0f;
+    private float mouseDeltaY = 0f;
+    private Quaternion startRotation = Quaternion.identity;
+    private Quaternion verticalRotation = Quaternion.identity;
+    private Quaternion horizontalRotarion = Quaternion.identity;
 
 
 

@@ -5,30 +5,29 @@ using UnityEngine;
 
 public class FallUFO : MonoBehaviour
 {
-    [SerializeField] private int _secondsToExecute;
-    [SerializeField] private Transform _startPositionOnSky;
-    [SerializeField] private Transform _pointToFallUFO;
-    [SerializeField] private float _timeFalling;
-    [SerializeField] private float _speedRotation;
+    [SerializeField] private int _secondsToExecute = 0;
+    [SerializeField] private Transform _startPositionOnSky = null;
+    [SerializeField] private Transform _pointToFallUFO = null;
+    [SerializeField] private float _timeFalling = 0f;
+    [SerializeField] private float _speedRotation = 0f;
 
     [Header("MoveToCircle")]
-    [SerializeField] private Transform _cercentreMoveingCircle;
-    [SerializeField] private float _timeCircularMotion;
-    [SerializeField] private float _speed;
+    [SerializeField] private Transform _cercentreMoveingCircle = null;
+    [SerializeField] private float _timeCircularMotion = 0f;
+    [SerializeField] private float _speed = 0f;
 
 
 
 
 
-     private bool isCircle;
-     private float radius;
+     private bool isCircle = false;
+     private float radius = 0f;
      private float _angleRotation = 0f;
 
     private void Start()
      {
         EventManager.OnSecondTick += OnSecondTick;
         radius = Vector3.Distance(transform.position, _cercentreMoveingCircle.position);
-        Debug.Log(radius);
      }
 
     private void Update()

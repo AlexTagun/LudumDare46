@@ -4,12 +4,7 @@ using UnityEngine;
 
 public abstract class LocalEvent : MonoBehaviour
 {
-    [SerializeField] private int _secondsToExecute;
-
-    private void Awake()
-    {
-
-    }
+    [SerializeField] private int _secondsToExecute = 0;
 
     protected abstract void Execute();
 

@@ -78,7 +78,6 @@ namespace GameReplay
             return new RenderTexture((int)theMyRect.width, (int)theMyRect.height, 1, GraphicsFormat.R8G8B8A8_UNorm, 1);
         }
 
-        private RenderTexture _interactionTexture = null;
         [SerializeField] private RawImage image = null;
         [SerializeField] private VideoPlayer videoPlayer = null;
     }

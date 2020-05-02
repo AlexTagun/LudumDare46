@@ -5,11 +5,11 @@ using DG.Tweening;
 
 public class VolcanoEvent : GlobalEvent
 {
-    [SerializeField] private float _timeRiseFromUnderground;
-    [SerializeField] private float _positionOnGround;
-    [SerializeField] private float _preparationTimeToEruption;
-    [SerializeField] private ParticleSystem _particleSystemEruptionVolcano;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private float _timeRiseFromUnderground = 0f;
+    [SerializeField] private float _positionOnGround = 0f;
+    [SerializeField] private float _preparationTimeToEruption = 0f;
+    [SerializeField] private ParticleSystem _particleSystemEruptionVolcano = null;
+    [SerializeField] private Animator _animator = null;
 
     protected override void Execute()
     {

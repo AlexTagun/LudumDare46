@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class GlobalEvent : MonoBehaviour {
-    [SerializeField] private int _secondsToExecute;
+    [SerializeField] private int _secondsToExecute = 0;
 
     private void Start() {
         EventManager.OnSecondTick += OnSecondTick;

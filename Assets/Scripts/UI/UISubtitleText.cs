@@ -1,43 +1,23 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class UISubtitleText  : MonoBehaviour
 {
-    [SerializeField] private float _secondBetweenWindow;
-    [SerializeField] private GameObject _subtitleUIPanel;
-    [SerializeField] private TextMeshProUGUI _textPlaceUI;
-    [SerializeField] private string[] _textForFirstReport;
-    [SerializeField] private string[] _textForSecondReport;
-    [SerializeField] private string[] _textForThirdReport;
-    [SerializeField] private string[] _textForFourthReport;
-    [SerializeField] private string[] _textForFifthReport;
+    [SerializeField] private float _secondBetweenWindow = 0f;
+    [SerializeField] private GameObject _subtitleUIPanel = null;
+    [SerializeField] private TextMeshProUGUI _textPlaceUI = null;
+    [SerializeField] private string[] _textForFirstReport = null;
+    [SerializeField] private string[] _textForSecondReport = null;
+    [SerializeField] private string[] _textForThirdReport = null;
+    [SerializeField] private string[] _textForFourthReport = null;
+    [SerializeField] private string[] _textForFifthReport = null;
     // Start is called before the first frame update
 
-    private void Awake()
-    {
-        _subtitleUIPanel.SetActive(false);
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void ShowSubtitlelUIPanel()
-    {
-        _subtitleUIPanel.SetActive(true);
-    }
-    public void CloseSubtitleUIPanel()
-    {
-        _subtitleUIPanel.SetActive(false);
-    }
-    public void ChangeText(string text)
-    {
-        _textPlaceUI.text = text;
-    }
+    private void Awake() { _subtitleUIPanel.SetActive(false); }
+    public void ShowSubtitlelUIPanel() { _subtitleUIPanel.SetActive(true); }
+    public void CloseSubtitleUIPanel() { _subtitleUIPanel.SetActive(false); }
+    public void ChangeText(string text) { _textPlaceUI.text = text; }
 
     public IEnumerator ShowSubtitleText(int stage)
     {

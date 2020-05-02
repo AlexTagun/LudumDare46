@@ -7,18 +7,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EndGameWindow : MonoBehaviour {
-    [SerializeField] private GameObject _container;
-    [SerializeField] private CameramanMovement _cameramanMovement;
-    [SerializeField] private Button _playButton;
-    [SerializeField] private Button _restartButton;
-    [SerializeField] private Button _closeButton;
+    [SerializeField] private GameObject _container = null;
+    [SerializeField] private CameramanMovement _cameramanMovement = null;
+    [SerializeField] private Button _playButton = null;
+    [SerializeField] private Button _restartButton = null;
+    [SerializeField] private Button _closeButton = null;
     [SerializeField] private GameReplay.ReplayPlayerObject _playerReplay = null;
-    [SerializeField] private Image _back;
-    [SerializeField] private CanvasGroup _canvasGroup;
-    [SerializeField] private GameObject[] _objectsToOff;
-    [SerializeField] private Sprite _simpleBack;
-    [SerializeField] private Sprite _whaleBack;
-    [SerializeField] private Text _finalPointsText;
+    [SerializeField] private Image _back = null;
+    [SerializeField] private CanvasGroup _canvasGroup = null;
+    [SerializeField] private GameObject[] _objectsToOff = null;
+    [SerializeField] private Sprite _simpleBack = null;
+    [SerializeField] private Sprite _whaleBack = null;
+    [SerializeField] private Text _finalPointsText = null;
 
     private void Awake() {
         EventManager.OnEndGame += Show;

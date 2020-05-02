@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class TutorialUIController : MonoBehaviour
 {
-    [SerializeField] private float _secondBetweenWindow;
-    [SerializeField] private CameramanInGameController _cameramanInGameController;
-    [SerializeField] private GameObject _tutorialUIPanel;
-    [SerializeField] private Image _iconImage;
-    [SerializeField] private TextMeshProUGUI _textPlaceUI;
-    [SerializeField] private Sprite[] _iconsForTutorial;
-    [SerializeField] private string[] _textsForTutorial;
+    [SerializeField] private float _secondBetweenWindow = 0f;
+    [SerializeField] private CameramanInGameController _cameramanInGameController = null;
+    [SerializeField] private GameObject _tutorialUIPanel = null;
+    [SerializeField] private Image _iconImage = null;
+    [SerializeField] private TextMeshProUGUI _textPlaceUI = null;
+    [SerializeField] private Sprite[] _iconsForTutorial = null;
+    [SerializeField] private string[] _textsForTutorial = null;
 
 
 

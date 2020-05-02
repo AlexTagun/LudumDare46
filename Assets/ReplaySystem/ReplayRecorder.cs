@@ -151,7 +151,7 @@ namespace GameReplay
         private int _currentCaptureIndexForCaptureFileName = 0;
 
         [SerializeField] private Camera _replayRecordingCamera = null;
-        [SerializeField] private FFmpegPreset _preset;
+        [SerializeField] private FFmpegPreset _preset = new FFmpegPreset();
         [SerializeField] private float _frameRate = 60;
 
         //NB: This code was in original implementation, maybe it will be needed in future
