@@ -12,20 +12,11 @@ public class ReplayRecroderTest : MonoBehaviour
         if (Input.GetKey(KeyCode.Q) && !_isPlayed) {
             List<GameReplay.Replay> theReplays = FindObjectOfType<CameramanInGameController>()._replays;
 
-            System.Action<GameReplay.Replay> theAfterStartNextReplayPreporation = (GameReplay.Replay inReplay) =>{
-                Debug.Log("AfterStartNextReplayPreporation");
-            };
-            System.Action<GameReplay.Replay> theBeforeStartNextReplay = (GameReplay.Replay inReplay) => {
-                Debug.Log("BeforeStartNextReplay");
-            };
             System.Action theLastReplayFinished = () => {
                 Debug.Log("LastReplayFinished");
             };
 
-            StartCoroutine(_player.playReplays(theReplays,
-                    theAfterStartNextReplayPreporation,
-                    theBeforeStartNextReplay,
-                    theLastReplayFinished));
+            StartCoroutine(_player.playReplays(theReplays, theLastReplayFinished));
 
             _isPlayed = true;
         }

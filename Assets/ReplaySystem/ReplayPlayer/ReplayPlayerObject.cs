@@ -10,67 +10,119 @@ namespace GameReplay
     {
         private enum EReplayPlayingStatus {
             NoAction,
-            NextReplayPreporation,
-            Playing,
-            FinishedCurrentReplay
+            VideoPreparing,
+            VideoPlaying
         }
 
-        public System.Collections.IEnumerator playReplays(
-            List<Replay> inReplays,
-            System.Action<Replay> inAfterStartNextReplayPreporation,
-            System.Action<Replay> inBeforeStartNextReplay,
-            System.Action inLastReplayFinished)
-        {
+        public System.Collections.IEnumerator playReplays(List<Replay> inReplays, System.Action inLastReplayFinished) {
             if (inReplays == null || inReplays.Count == 0) {
                 inLastReplayFinished();
                 yield break;
             }
-            
-            int theReplayIndexForExit = inReplays.Count;
-            int theCurrentReplayIndex = 0;
 
-            EReplayPlayingStatus theReplayStatus = EReplayPlayingStatus.NoAction;
-
-            System.Action theStartCurrentReplayPreporation = ()=>{
-                Replay theCurrentReplay = inReplays[theCurrentReplayIndex];
-                videoPlayer.url = theCurrentReplay.replayURL;
-                videoPlayer.Prepare();
-                theReplayStatus = EReplayPlayingStatus.NextReplayPreporation;
-                inAfterStartNextReplayPreporation(inReplays[theCurrentReplayIndex]);
-            };
-
-            while (true) {
-                if (EReplayPlayingStatus.NoAction == theReplayStatus) {
-                    theStartCurrentReplayPreporation();
-                } else if (EReplayPlayingStatus.FinishedCurrentReplay == theReplayStatus) {
-                    if (++theCurrentReplayIndex == theReplayIndexForExit) {
-                        break;
-                    } else {
-                        theStartCurrentReplayPreporation();
-                        yield return null;
-                    }
-                } else if (EReplayPlayingStatus.NextReplayPreporation == theReplayStatus && videoPlayer.isPrepared) {
-                    inBeforeStartNextReplay(inReplays[theCurrentReplayIndex]);
-                    videoPlayer.Play();
-                    theReplayStatus = EReplayPlayingStatus.Playing;
-                } else if (EReplayPlayingStatus.Playing == theReplayStatus && !videoPlayer.isPlaying) {
-                    theReplayStatus = EReplayPlayingStatus.FinishedCurrentReplay;
-                } else {
-                    yield return null;
+            List<System.Action<VideoPlayer>> theAllVideosPreprationActions = new List<System.Action<VideoPlayer>>();
+            for (int theIndex = 0; theIndex < inReplays.Count - 1; ++theIndex) {
+                string theReplayURL = (string)inReplays[theIndex].replayURL.Clone();
+                theAllVideosPreprationActions.Add((VideoPlayer inPlayer) => {
+                    inPlayer.url = theReplayURL;
+                    inPlayer.Prepare();
+                });
+                    
+                VideoClip theNextCutaway = getNextRandomCutaway();
+                if (null != theNextCutaway) {
+                    theAllVideosPreprationActions.Add((VideoPlayer inPlayer) => {
+                        preparingVideoPlayer.clip = theNextCutaway;
+                        inPlayer.Prepare();
+                    });
                 }
             }
 
-            inLastReplayFinished();
+            {
+                string theReplayURL = (string)inReplays[inReplays.Count - 1].replayURL.Clone();
+                theAllVideosPreprationActions.Add((VideoPlayer inPlayer) => {
+                    inPlayer.url = theReplayURL;
+                    inPlayer.Prepare();
+                });
 
-            videoPlayer.Stop();
+                if (finalCutaway) {
+                    theAllVideosPreprationActions.Add((VideoPlayer inPlayer) => {
+                        preparingVideoPlayer.clip = finalCutaway;
+                        inPlayer.Prepare();
+                    });
+                }
+            }
 
-            yield break;
+            int theVideoIndexToExit = theAllVideosPreprationActions.Count;
+            int theNextVideoIndex = 0;
+            EReplayPlayingStatus theReplayStatus = EReplayPlayingStatus.NoAction;
+
+            System.Action theTryPrepareNextVideo = () => {
+                if (theNextVideoIndex != theVideoIndexToExit)
+                    theAllVideosPreprationActions[theNextVideoIndex].Invoke(preparingVideoPlayer);
+            };
+
+            while (true) {
+                switch (theReplayStatus)
+                {
+                    case EReplayPlayingStatus.NoAction:
+                        theTryPrepareNextVideo();
+
+                        swapVideoPlayer();
+                        ++theNextVideoIndex;
+                        theTryPrepareNextVideo();
+                        
+                        theReplayStatus = EReplayPlayingStatus.VideoPreparing;
+                        break;
+
+                    case EReplayPlayingStatus.VideoPreparing:
+                        if (playingVideoPlayer.isPrepared) {
+                            playingVideoPlayer.Play();
+                            theReplayStatus = EReplayPlayingStatus.VideoPlaying;
+                        }
+                        break;
+
+                    case EReplayPlayingStatus.VideoPlaying:
+                        if (!playingVideoPlayer.isPlaying) {
+                            if (theNextVideoIndex != theVideoIndexToExit) {
+                                swapVideoPlayer();
+                                ++theNextVideoIndex;
+                                theTryPrepareNextVideo();
+
+                                theReplayStatus = EReplayPlayingStatus.VideoPreparing;
+                            } else {
+                                cleanState();
+                                yield break;
+                            }
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+                yield return null;
+            }
+        }
+
+        private void cleanState() {
+            videoPlayerA.Stop();
+            videoPlayerB.Stop();
+
+            imageA.gameObject.SetActive(true);
+            imageB.gameObject.SetActive(false);
+
+            isVideoPlayerAUsedForPlay = true;
         }
 
         private void Start() {
-            RenderTexture theInteractionTexture = createTexture();
-            videoPlayer.targetTexture = theInteractionTexture;
-            image.texture = theInteractionTexture;
+            RenderTexture theInteractionTextureA = createTexture();
+            videoPlayerA.targetTexture = theInteractionTextureA;
+            imageA.texture = theInteractionTextureA;
+
+            RenderTexture theInteractionTextureB = createTexture();
+            videoPlayerB.targetTexture = theInteractionTextureB;
+            imageB.texture = theInteractionTextureB;
+
+            cleanState();
         }
 
         private RenderTexture createTexture() {
@@ -78,7 +130,28 @@ namespace GameReplay
             return new RenderTexture((int)theMyRect.width, (int)theMyRect.height, 1, GraphicsFormat.R8G8B8A8_UNorm, 1);
         }
 
-        [SerializeField] private RawImage image = null;
-        [SerializeField] private VideoPlayer videoPlayer = null;
+        private VideoClip getNextRandomCutaway() {
+            return (null == cutaways || 0 == cutaways.Length) ?
+                    null : cutaways[Random.Range(0, cutaways.Length)];
+        }
+
+        private void swapVideoPlayer() {
+            isVideoPlayerAUsedForPlay = !isVideoPlayerAUsedForPlay;
+            imageA.gameObject.SetActive(isVideoPlayerAUsedForPlay);
+            imageB.gameObject.SetActive(!isVideoPlayerAUsedForPlay);
+        }
+
+        private VideoPlayer playingVideoPlayer => isVideoPlayerAUsedForPlay ? videoPlayerA : videoPlayerB;
+        private VideoPlayer preparingVideoPlayer => isVideoPlayerAUsedForPlay ? videoPlayerB : videoPlayerA;
+
+        //Fields
+        [SerializeField] private RawImage imageA = null;
+        [SerializeField] private RawImage imageB = null;
+        [SerializeField] private VideoPlayer videoPlayerA = null;
+        [SerializeField] private VideoPlayer videoPlayerB = null;
+        [SerializeField] private bool isVideoPlayerAUsedForPlay = true;
+
+        [SerializeField] private VideoClip[] cutaways = null;
+        [SerializeField] private VideoClip finalCutaway = null;
     }
 }
