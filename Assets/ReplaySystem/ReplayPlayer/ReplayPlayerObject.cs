@@ -77,12 +77,15 @@ namespace GameReplay
                     case EReplayPlayingStatus.VideoPreparing:
                         if (playingVideoPlayer.isPrepared) {
                             playingVideoPlayer.Play();
+
+                            StartCoroutine(animateImageAlpha(playingVideoImage, 1f, 0.1f, 0.2f));
                             theReplayStatus = EReplayPlayingStatus.VideoPlaying;
                         }
                         break;
 
                     case EReplayPlayingStatus.VideoPlaying:
                         if (!playingVideoPlayer.isPlaying) {
+                            StartCoroutine(animateImageAlpha(playingVideoImage, 0f));
                             if (theNextVideoIndex != theVideoIndexToExit) {
                                 swapVideoPlayer();
                                 ++theNextVideoIndex;
@@ -91,6 +94,7 @@ namespace GameReplay
                                 theReplayStatus = EReplayPlayingStatus.VideoPreparing;
                             } else {
                                 cleanState();
+                                inLastReplayFinished();
                                 yield break;
                             }
                         }
@@ -107,8 +111,8 @@ namespace GameReplay
             videoPlayerA.Stop();
             videoPlayerB.Stop();
 
-            imageA.gameObject.SetActive(true);
-            imageB.gameObject.SetActive(false);
+            setImageVisibility(imageA, false);
+            setImageVisibility(imageB, false);
 
             isVideoPlayerAUsedForPlay = true;
         }
@@ -116,10 +120,12 @@ namespace GameReplay
         private void Start() {
             RenderTexture theInteractionTextureA = createTexture();
             videoPlayerA.targetTexture = theInteractionTextureA;
+            videoPlayerA.waitForFirstFrame = true;
             imageA.texture = theInteractionTextureA;
 
             RenderTexture theInteractionTextureB = createTexture();
             videoPlayerB.targetTexture = theInteractionTextureB;
+            videoPlayerB.waitForFirstFrame = true;
             imageB.texture = theInteractionTextureB;
 
             cleanState();
@@ -137,12 +143,41 @@ namespace GameReplay
 
         private void swapVideoPlayer() {
             isVideoPlayerAUsedForPlay = !isVideoPlayerAUsedForPlay;
-            imageA.gameObject.SetActive(isVideoPlayerAUsedForPlay);
-            imageB.gameObject.SetActive(!isVideoPlayerAUsedForPlay);
+        }
+
+        private void setImageVisibility(RawImage inImage, bool inIsVisible) {
+            Color theStartColor = inImage.color;
+            theStartColor.a = inIsVisible ? 1f : 0f;
+            inImage.color = theStartColor;
+        }
+
+        private System.Collections.IEnumerator animateImageAlpha(RawImage inImage, float inTargetAlpha, float inTimeToAnimate = 0f, float inStartingDelay = 0f) {
+            if (inStartingDelay > 0f)
+                yield return new WaitForSeconds(inStartingDelay);
+
+            Color theStartColor = inImage.color;
+            
+            if (inTimeToAnimate > 0f)
+            {
+                float theTotalDeltaAlpha = inTargetAlpha - theStartColor.a;
+
+                float theAnimationTime = 0f;
+                
+                while (theAnimationTime < inTimeToAnimate) {
+                    float theAnimationProgress = theAnimationTime / inTimeToAnimate;
+                    float theAlpha = theStartColor.a + theTotalDeltaAlpha * theAnimationProgress;
+                    inImage.color = new Color(theStartColor.r, theStartColor.g, theStartColor.b, theAlpha);
+                    theAnimationTime += Time.fixedDeltaTime;
+                    yield return null;
+                }
+            }
+
+            inImage.color = new Color(theStartColor.r, theStartColor.g, theStartColor.b, inTargetAlpha);
         }
 
         private VideoPlayer playingVideoPlayer => isVideoPlayerAUsedForPlay ? videoPlayerA : videoPlayerB;
         private VideoPlayer preparingVideoPlayer => isVideoPlayerAUsedForPlay ? videoPlayerB : videoPlayerA;
+        private RawImage playingVideoImage => isVideoPlayerAUsedForPlay ? imageA : imageB;
 
         //Fields
         [SerializeField] private RawImage imageA = null;

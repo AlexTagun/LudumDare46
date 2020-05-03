@@ -859,25 +859,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndGameWindow
       objectReference: {fileID: 0}
-    - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
+    - target: {fileID: 1854890645641009744, guid: e69add03519c5124fb71907613cf364e,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -40.891
+      propertyPath: m_textInfo.lineCount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1611.7683
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -32.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2859513626869822187, guid: e69add03519c5124fb71907613cf364e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 804.59863
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2918167320355081694, guid: e69add03519c5124fb71907613cf364e,
         type: 3}
