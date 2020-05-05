@@ -253,6 +253,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimatedFloatingImageUIEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 6038650613374089663, guid: b466c51af60c4b64abe93f43483ae438,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038650613374089663, guid: b466c51af60c4b64abe93f43483ae438,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038650613374089663, guid: b466c51af60c4b64abe93f43483ae438,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b466c51af60c4b64abe93f43483ae438, type: 3}
 --- !u!224 &719472014530749083 stripped

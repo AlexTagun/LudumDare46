@@ -22,7 +22,7 @@ public class PerTickPopularitySourceUIObject : MonoBehaviour
         theNewEffect.GetComponent<RectTransform>().SetParent(GetComponent<RectTransform>(), false);
         theNewEffect.setValueAndStart(inGainedPoints.ToString(),
                 _textSpawningPosition.localPosition, theMoveDelta, 1f,
-                1f, 2f);
+                0.8f, 1.2f);
     }
 
     private void highlightPopularityIcon() {
